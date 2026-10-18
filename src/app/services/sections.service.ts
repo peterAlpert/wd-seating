@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Section } from '../interfaces/section';
+import { environment } from '../../environments/environment';
 
 export interface SectionAttendanceHistory {
   id: number;
@@ -168,8 +169,8 @@ export class SectionsService {
 
   private http = inject(HttpClient);
 
-  // apiUrl = 'https://localhost:7029/api/Sections';
-  apiUrl = 'https://wd-capcity.runasp.net/api/Sections';
+
+  apiUrl = environment.apiUrl + '/Sections';
 
   // جلب كل المناطق
   getAll() {
