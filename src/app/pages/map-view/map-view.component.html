@@ -1,0 +1,1231 @@
+<div class="map-container" [class.edit-mode]="isEditMode" (pointerdown)="startDrag($event)" (pointermove)="drag($event)"
+    (pointerup)="stopDrag()" (pointercancel)="stopDrag()" (wheel)="onWheel($event)" (touchstart)="onTouchStart($event)"
+    (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd($event)" (touchcancel)="onTouchEnd($event)">
+
+
+    <!-- ========================= -->
+    <!-- Header -->
+    <!-- ========================= -->
+
+    <div class="map-title">
+        <div class="title-icon">
+            <span>◈</span>
+        </div>
+
+        <div>
+            <h2>خريطة إشغال النادي</h2>
+            <span>Live Heat Map</span>
+        </div>
+    </div>
+
+
+    <!-- Dashboard -->
+
+    <button class="dashboard-btn" (click)="goToDashboard(); $event.stopPropagation()">
+        <span>📊</span>
+        لوحة التحكم
+    </button>
+
+
+    <!-- ========================= -->
+    <!-- Edit Controls -->
+    <!-- ========================= -->
+
+    <div class="map-editor-controls" *ngIf="isEditMode">
+        <button class="save-map-btn" (click)="toggleEditMode(); $event.stopPropagation()">
+            💾 حفظ
+        </button>
+
+        <button class="cancel-map-btn" (click)="cancelMapEdit(); $event.stopPropagation()">
+            ✕ إلغاء
+        </button>
+    </div>
+
+
+    <button class="edit-map-btn" *ngIf="!isEditMode" (click)="toggleEditMode(); $event.stopPropagation()">
+        ✏️ تعديل الخريطة
+    </button>
+
+
+    <!-- ========================= -->
+    <!-- MAP -->
+    <!-- ========================= -->
+
+    <div class="map-wrapper" [style.transform]="
+    'translate(' +
+    offsetX +
+    'px, ' +
+    offsetY +
+    'px) scale(' +
+    (zoomLevel * mapFitScale) +
+    ')'
+  ">
+
+        <!-- ========================= -->
+        <!-- Club Ground -->
+        <!-- ========================= -->
+
+        <div class="club-ground">
+
+            <!-- Main roads -->
+
+            <div class="ground-road road-horizontal"></div>
+
+            <div class="ground-road road-left"></div>
+
+            <div class="ground-road road-right"></div>
+
+            <div class="ground-road road-bottom"></div>
+
+
+            <!-- Small pedestrian paths -->
+
+            <div class="walk-path path-one"></div>
+            <div class="walk-path path-two"></div>
+            <div class="walk-path path-three"></div>
+            <div class="walk-path path-four"></div>
+
+
+            <!-- Trees -->
+
+            <div class="ground-tree tree-1">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-2">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-3">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-4">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-5">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-6">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-7">
+                <span></span>
+            </div>
+
+            <div class="ground-tree tree-8">
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- Interactive Areas -->
+        <!-- ========================= -->
+
+        <div class="map-area" *ngFor="let area of mapAreas" [cdkDragDisabled]="!isEditMode" cdkDrag
+            (cdkDragEnded)="onAreaDragEnd($event, area)" [attr.data-section]="area.sectionName" [class.selected]="
+        selectedSection?.sectionName?.trim() === area.sectionName.trim()
+      " [style.left.%]="area.x" [style.top.%]="area.y" [style.width.%]="area.width" [style.height.%]="area.height"
+            [style.background]="getBackgroundColor(area)" [style.borderColor]="getColor(area)"
+            (click)="onAreaClick(area.name, $event)" (mouseenter)="showTooltip($event, area)"
+            (mousemove)="moveTooltip($event)" (mouseleave)="hideTooltip()">
+
+            <!-- ================================= -->
+            <!-- Decorative visual layer -->
+            <!-- Used by buildings / facilities -->
+            <!-- ================================= -->
+
+            <div class="area-visual">
+
+                <!-- Social Building -->
+                <ng-container *ngIf="area.sectionName === 'SocialB-lowCafe'">
+                    <div class="real-building social-building">
+
+                        <div class="building-roof"></div>
+
+                        <div class="building-body">
+
+                            <div class="building-glass"></div>
+
+                            <div class="building-entrance">
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ng-container>
+
+
+                <!-- Sports Building -->
+                <ng-container *ngIf="area.sectionName === 'SportBuilding-WaitHall'">
+                    <div class="real-building sports-building">
+
+                        <div class="building-roof"></div>
+
+                        <div class="building-body">
+
+                            <div class="building-glass"></div>
+
+                            <div class="building-entrance">
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </ng-container>
+
+            </div>
+
+
+            <!-- ================================= -->
+            <!-- Main Area Information -->
+            <!-- ================================= -->
+
+            <div class="area-info">
+
+                <div class="area-name">
+                    {{ area.name }}
+                </div>
+
+                <div class="area-percent">
+                    {{ getPercentage(area) }}%
+                </div>
+
+            </div>
+
+
+            <!-- Viewing Benches -->
+            <ng-container *ngIf="area.sectionName === 'Viewing-Benches'">
+
+                <div class="viewing-benches">
+
+                    <div class="viewing-bench">
+                        <span></span>
+
+                    </div>
+
+
+                    <div class="viewing-bench">
+                        <span></span>
+
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="area.sectionName === 'Viewing-Benches2'">
+
+                <div class="viewing-benches2">
+
+                    <div class="viewing-bench">
+                        <span></span>
+
+                    </div>
+
+                    <div class="viewing-bench">
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+
+            <!-- Mamourty -->
+            <ng-container *ngIf="area.sectionName === 'Mamourty'">
+
+                <div class="mamourty-zone">
+
+                    <div class="mamourty-title">
+                        معمورتي
+                    </div>
+
+                    <div class="electric-car car-1"></div>
+                    <div class="electric-car car-2"></div>
+                    <div class="electric-car car-3"></div>
+
+                </div>
+
+            </ng-container>
+
+
+            <!-- Saraya Restaurant -->
+            <ng-container *ngIf="area.sectionName === 'Saraya-Restaurant'">
+
+                <div class="saraya-restaurant">
+
+                    <div class="saraya-icon">
+                        🍽
+                    </div>
+                </div>
+
+            </ng-container>
+
+
+            <!-- ================================= -->
+            <!-- ART HOUSE SEATING -->
+            <!-- ================================= -->
+
+            <ng-container *ngIf="area.sectionName === 'ArtHouse'">
+
+                <div class="arthouse-seating">
+
+                    <!-- Table 1 -->
+                    <div class="arthouse-table arthouse-table-1">
+                        <span class="arthouse-chair chair-top"></span>
+                        <span class="arthouse-chair chair-right"></span>
+                        <span class="arthouse-chair chair-bottom"></span>
+                        <span class="arthouse-chair chair-left"></span>
+                    </div>
+
+                    <!-- Table 2 -->
+                    <div class="arthouse-table arthouse-table-2">
+                        <span class="arthouse-chair chair-top"></span>
+                        <span class="arthouse-chair chair-right"></span>
+                        <span class="arthouse-chair chair-bottom"></span>
+                        <span class="arthouse-chair chair-left"></span>
+                    </div>
+
+                    <!-- Table 3 -->
+                    <div class="arthouse-table arthouse-table-3">
+                        <span class="arthouse-chair chair-top"></span>
+                        <span class="arthouse-chair chair-right"></span>
+                        <span class="arthouse-chair chair-bottom"></span>
+                        <span class="arthouse-chair chair-left"></span>
+                    </div>
+
+                    <!-- Table 4 -->
+                    <div class="arthouse-table arthouse-table-4">
+                        <span class="arthouse-chair chair-top"></span>
+                        <span class="arthouse-chair chair-right"></span>
+                        <span class="arthouse-chair chair-bottom"></span>
+                        <span class="arthouse-chair chair-left"></span>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+            <!-- ================================================= -->
+            <!-- SOCIAL / SPORTS SEATING -->
+            <!-- ================================================= -->
+
+            <ng-container *ngIf="
+    area.sectionName === 'Social-200' 
+">
+
+                <div class="building-seating">
+
+                    <!-- Table 1 -->
+                    <div class="building-table building-table-1">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+
+                    <!-- Table 2 -->
+                    <div class="building-table building-table-2">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+
+                    <!-- Table 3 -->
+                    <div class="building-table building-table-3">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                    <!-- Table 4 -->
+                    <div class="building-table building-table-4">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                    <!-- Table 5 -->
+                    <div class="building-table building-table-5">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+
+            <ng-container *ngIf="
+    area.sectionName === 'Social-300' 
+">
+
+                <div class="building-seating">
+
+                    <!-- Table 1 -->
+                    <div class="building-table building-table-11">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+
+                    <!-- Table 2 -->
+                    <div class="building-table building-table-21">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+
+                    <!-- Table 3 -->
+                    <div class="building-table building-table-31">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                    <!-- Table 4 -->
+                    <div class="building-table building-table-41">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                    <!-- Table 5 -->
+                    <div class="building-table building-table-51">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <ng-container *ngIf="
+    area.sectionName === 'Social-100' || area.sectionName === 'Social-400'
+">
+
+                <div class="building-seating">
+
+                    <!-- Table 1 -->
+                    <div class="building-table building-table-111">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+
+                    <!-- Table 2 -->
+                    <div class="building-table building-table-222">
+
+                        <div class="building-table-top"></div>
+
+                        <span class="building-chair chair-top"></span>
+                        <span class="building-chair chair-right"></span>
+                        <span class="building-chair chair-bottom"></span>
+                        <span class="building-chair chair-left"></span>
+
+                    </div>
+
+                </div>
+
+            </ng-container>
+            <!-- ================================= -->
+            <!-- Special Labels -->
+            <!-- ================================= -->
+
+            <div class="facility-tag" *ngIf="
+          area.sectionName === 'SocialB-lowCafe' ||
+          area.sectionName === 'SportBuilding-WaitHall'
+        ">
+                <span style="font-size: x-large;">
+                    {{ area.sectionName === 'SocialB-lowCafe' ? 'الاجتماعي' : 'الرياضي' }}
+                </span>
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- REAL KIOSKS -->
+            <!-- ================================================= -->
+
+            <div class="real-kiosks" *ngIf="area.sectionName === 'Kiosks'">
+
+                <!-- =========================
+         KIOSK: TREATS - TOP LEFT
+         ========================= -->
+                <div class="real-kiosk kiosk-treats">
+
+                    <div class="kiosk-roof"></div>
+
+                    <div class="kiosk-sign">
+                        تريتس
+                    </div>
+
+                    <div class="kiosk-window"></div>
+
+                    <div class="kiosk-counter"></div>
+
+                    <div class="kiosk-door"></div>
+
+                </div>
+
+
+                <!-- =========================
+         KIOSK: POTATO & ZALABYA
+         BOTTOM LEFT
+         ========================= -->
+                <div class="real-kiosk kiosk-potato">
+
+                    <div class="kiosk-roof"></div>
+
+                    <div class="kiosk-sign">
+                        بطاطس و زلابية
+                    </div>
+
+                    <div class="kiosk-window"></div>
+
+                    <div class="kiosk-counter"></div>
+
+                    <div class="kiosk-door"></div>
+
+                </div>
+
+
+                <!-- =========================
+         KIOSK: NESTLE - TOP RIGHT
+         ========================= -->
+                <div class="real-kiosk kiosk-nestle">
+
+                    <div class="kiosk-roof"></div>
+
+                    <div class="kiosk-sign">
+                        نسله
+                    </div>
+
+                    <div class="kiosk-window"></div>
+
+                    <div class="kiosk-counter"></div>
+
+                    <div class="kiosk-door"></div>
+
+                </div>
+
+
+                <!-- =========================
+         CENTER GARDEN
+         ========================= -->
+                <div class="kiosk-garden">
+
+                    <div class="garden-soil"></div>
+
+                    <span class="garden-bush bush-1"></span>
+                    <span class="garden-bush bush-2"></span>
+                    <span class="garden-bush bush-3"></span>
+                    <span class="garden-bush bush-4"></span>
+                    <span class="garden-bush bush-5"></span>
+                    <span class="garden-bush bush-6"></span>
+
+                    <span class="garden-tree-small tree-1"></span>
+                    <span class="garden-tree-small tree-2"></span>
+
+                </div>
+
+
+                <!-- =========================
+         TABLE 1
+         ========================= -->
+                <div class="kiosk-table table-left">
+
+                    <div class="kiosk-table-top"></div>
+
+                    <span class="kiosk-chair chair-top"></span>
+                    <span class="kiosk-chair chair-right"></span>
+                    <span class="kiosk-chair chair-bottom"></span>
+                    <span class="kiosk-chair chair-left"></span>
+
+                </div>
+
+                <!-- =========================
+         TABLE 1-1
+         ========================= -->
+                <div class="kiosk-table table-left2">
+
+                    <div class="kiosk-table-top"></div>
+
+                    <span class="kiosk-chair chair-top"></span>
+                    <span class="kiosk-chair chair-right"></span>
+                    <span class="kiosk-chair chair-bottom"></span>
+                    <span class="kiosk-chair chair-left"></span>
+
+                </div>
+
+
+
+                <!-- =========================
+         TABLE 3
+         ========================= -->
+                <div class="kiosk-table table-right">
+
+                    <div class="kiosk-table-top"></div>
+
+                    <span class="kiosk-chair chair-top"></span>
+                    <span class="kiosk-chair chair-right"></span>
+                    <span class="kiosk-chair chair-bottom"></span>
+                    <span class="kiosk-chair chair-left"></span>
+
+                </div>
+
+                <div class="kiosk-table table-right2">
+
+                    <div class="kiosk-table-top"></div>
+
+                    <span class="kiosk-chair chair-top"></span>
+                    <span class="kiosk-chair chair-right"></span>
+                    <span class="kiosk-chair chair-bottom"></span>
+                    <span class="kiosk-chair chair-left"></span>
+
+                </div>
+
+                <div class="kiosk-table table-right3">
+
+                    <div class="kiosk-table-top"></div>
+
+                    <span class="kiosk-chair chair-top"></span>
+                    <span class="kiosk-chair chair-right"></span>
+                    <span class="kiosk-chair chair-bottom"></span>
+                    <span class="kiosk-chair chair-left"></span>
+
+                </div>
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- REAL garden -->
+            <!-- ================================================= -->
+
+            <ng-container *ngIf="
+    area.sectionName === 'garden1' ||
+    area.sectionName === 'garden2' ||
+    area.sectionName === 'garden3'
+">
+
+                <div class="garden-real">
+
+                    <div class="garden-playground">
+                        <div class="garden-slide">
+                            <div class="garden-slide-ladder"></div>
+                            <div class="garden-slide-platform"></div>
+                            <div class="garden-slide-chute"></div>
+                        </div>
+
+                        <div class="garden-swings">
+                            <div class="garden-swing-frame"></div>
+                            <div class="garden-swing-left"></div>
+                            <div class="garden-swing-right"></div>
+                        </div>
+                    </div>
+
+                    <div class="garden-path"></div>
+
+
+                    <!-- ========================= -->
+                    <!-- TOP LEFT TABLE -->
+                    <!-- ========================= -->
+
+                    <div class="garden-seating seating-top-left">
+                        <div class="garden-table"></div>
+
+                        <span class="garden-chair chair-top"></span>
+                        <span class="garden-chair chair-right"></span>
+                        <span class="garden-chair chair-bottom"></span>
+                        <span class="garden-chair chair-left"></span>
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- TOP RIGHT TABLE -->
+                    <!-- ========================= -->
+
+                    <div class="garden-seating seating-top-right">
+                        <div class="garden-table"></div>
+
+                        <span class="garden-chair chair-top"></span>
+                        <span class="garden-chair chair-right"></span>
+                        <span class="garden-chair chair-bottom"></span>
+                        <span class="garden-chair chair-left"></span>
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- BOTTOM LEFT TABLE -->
+                    <!-- ========================= -->
+
+                    <div class="garden-seating seating-bottom-left">
+                        <div class="garden-table"></div>
+
+                        <span class="garden-chair chair-top"></span>
+                        <span class="garden-chair chair-right"></span>
+                        <span class="garden-chair chair-bottom"></span>
+                        <span class="garden-chair chair-left"></span>
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- BOTTOM RIGHT TABLE -->
+                    <!-- ========================= -->
+
+                    <div class="garden-seating seating-bottom-right">
+                        <div class="garden-table"></div>
+
+                        <span class="garden-chair chair-top"></span>
+                        <span class="garden-chair chair-right"></span>
+                        <span class="garden-chair chair-bottom"></span>
+                        <span class="garden-chair chair-left"></span>
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- TREES - CENTER OF SIDES -->
+                    <!-- ========================= -->
+
+                    <span class="garden-tree tree-top-center"></span>
+                    <span class="garden-tree tree-bottom-center"></span>
+                    <span class="garden-tree tree-left-center"></span>
+                    <span class="garden-tree tree-right-center"></span>
+
+                </div>
+
+            </ng-container>
+
+
+
+            <!-- ================================================= -->
+            <!-- TRACK -->
+            <!-- ================================================= -->
+
+            <div class="real-track" *ngIf="area.sectionName === 'Track'">
+
+                <div class="track-outer">
+
+
+                    <div class="track-field">
+
+                        <div class="track-field-line line-horizontal"></div>
+                        <div class="track-field-line line-vertical"></div>
+
+                    </div>
+
+                </div>
+
+                <div class="track-sidewalk"></div>
+
+            </div>
+
+
+
+            <!-- ================================================= -->
+            <!-- FITNESS -->
+            <!-- ================================================= -->
+
+            <div class="real-fitness" *ngIf="area.sectionName === 'Fitness'">
+
+                <div class="fitness-building">
+
+                    <div class="fitness-roof"></div>
+
+                    <div class="fitness-glass-front">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="fitness-door"></div>
+
+                </div>
+
+                <div class="fitness-yard">
+
+                    <span class="fitness-machine machine-1"></span>
+                    <span class="fitness-machine machine-2"></span>
+                    <span class="fitness-machine machine-3"></span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- FIVE-A-SIDE FOOTBALL FIELDS -->
+            <!-- ================================================= -->
+
+            <ng-container *ngIf="
+    area.sectionName === 'Five-A-Side-1' ||
+    area.sectionName === 'Five-A-Side-2' ||
+    area.sectionName === 'Five-A-Side-3' ||
+    area.sectionName === 'Five-A-Side-4'
+">
+
+                <div class="five-side-field">
+
+                    <div class="field-border">
+
+                        <div class="field-center-line"></div>
+
+                        <div class="field-center-circle"></div>
+
+                        <div class="field-goal goal-top"></div>
+
+                        <div class="field-goal goal-bottom"></div>
+
+                    </div>
+
+
+                    <!-- BENCHES -->
+
+                    <div class="field-bench bench-left">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <div class="field-bench bench-right">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </ng-container>
+
+            <!-- ================================================= -->
+            <!-- PHASE 2 -->
+            <!-- ================================================= -->
+
+            <div class="real-phase2" *ngIf="area.sectionName === 'Phase-2'">
+
+                <div class="phase2-road"></div>
+
+                <div class="phase2-buildings">
+
+                    <div class="phase2-building building-1">
+                        <div class="phase2-roof"></div>
+                        <div class="phase2-window"></div>
+                        <div class="phase2-door"></div>
+                    </div>
+
+                    <div class="phase2-building building-2">
+                        <div class="phase2-roof"></div>
+                        <div class="phase2-window"></div>
+                        <div class="phase2-door"></div>
+                    </div>
+
+                    <div class="phase2-building building-3">
+                        <div class="phase2-roof"></div>
+                        <div class="phase2-window"></div>
+                        <div class="phase2-door"></div>
+                    </div>
+
+                </div>
+
+                <div class="phase2-green-area"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- Lake -->
+        <!-- ========================= -->
+
+        <div class="lake-shape">
+
+            <div class="lake-ripple ripple-1"></div>
+            <div class="lake-ripple ripple-2"></div>
+            <div class="lake-ripple ripple-3"></div>
+
+            <div class="lake-wave wave-1"></div>
+            <div class="lake-wave wave-2"></div>
+            <div class="lake-wave wave-3"></div>
+
+            <div class="lake-label">
+                البحيرة
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- Gates -->
+        <!-- ========================= -->
+
+        <div class="gate" *ngFor="let gate of gates" [style.left.%]="gate.x" [style.top.%]="gate.y">
+
+            <div class="gate-line"></div>
+
+            <div class="gate-icon">
+                🚪
+            </div>
+
+            <div class="gate-label">
+                {{ gate.name }}
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Section Details Panel -->
+    <!-- ========================= -->
+
+    <div class="section-panel" *ngIf="selectedSection" (mousedown)="$event.stopPropagation()"
+        (click)="$event.stopPropagation()">
+
+        <button class="close-panel" (click)="closePanel(); $event.stopPropagation()">
+            ×
+        </button>
+
+
+        <div class="panel-header">
+
+            <div>
+
+                <h2>
+                    {{ selectedSection.sectionName }}
+                </h2>
+
+                <span class="live-status">
+                    ● LIVE
+                </span>
+
+            </div>
+
+            <span class="status-dot" [style.background]="getColorBySection(selectedSection)"></span>
+
+        </div>
+
+
+        <!-- No data -->
+
+        <div class="no-data" *ngIf="selectedSection.noData">
+            لا توجد بيانات لهذه المنطقة
+        </div>
+
+
+        <!-- Data -->
+
+        <div class="section-details" *ngIf="!selectedSection.noData">
+
+            <div class="detail">
+
+                <span>
+                    الحضور الحالي
+                </span>
+
+                <strong>
+                    {{ selectedSection.currentAttendance }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    السعة
+                </span>
+
+                <strong>
+                    {{ selectedSection.capacity }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail full">
+
+                <span>
+                    نسبة الإشغال
+                </span>
+
+                <strong [style.color]="getColorBySection(selectedSection)">
+                    {{ getPercentageBySection(selectedSection) }}%
+                </strong>
+
+            </div>
+
+        </div>
+
+        <!-- Capacity Editor -->
+
+        <div class="capacity-editor" *ngIf="
+        selectedSection &&
+        !selectedSection.noData &&
+        showCapacityEditor
+    " (click)="$event.stopPropagation()">
+
+            <span>
+                تعديل السعة
+            </span>
+
+            <input type="number" min="1" [(ngModel)]="newCapacity" />
+
+            <button type="button" class="save-capacity-btn" [disabled]="
+            attendanceUpdating ||
+            newCapacity <= 0 ||
+            newCapacity < selectedSection.currentAttendance
+        " (click)="saveCapacity(); $event.stopPropagation()">
+
+                حفظ
+
+            </button>
+
+        </div>
+
+
+        <button type="button" class="edit-capacity-toggle" *ngIf="selectedSection && !selectedSection.noData"
+            (click)="toggleCapacityEditor(); $event.stopPropagation()">
+
+            ⚙ تعديل السعة
+
+        </button>
+
+
+        <!-- Attendance actions -->
+
+        <div class="attendance-actions" *ngIf="!selectedSection.noData">
+
+            <div class="quantity-control">
+
+                <button type="button" class="quantity-btn" [disabled]="attendanceUpdating || attendanceCount <= 1"
+                    (click)="decreaseAttendanceCount(); $event.stopPropagation()">
+
+                    −
+
+                </button>
+
+
+                <input type="number" min="1" [max]="getAvailableForEntry()" [(ngModel)]="attendanceCount"
+                    (click)="$event.stopPropagation()" />
+
+
+                <button type="button" class="quantity-btn" [disabled]="attendanceUpdating"
+                    (click)="increaseAttendanceCount(); $event.stopPropagation()">
+
+                    +
+
+                </button>
+
+            </div>
+
+
+            <div class="attendance-buttons">
+
+                <button class="enter-btn" [disabled]="
+                attendanceUpdating ||
+                attendanceCount <= 0 ||
+                selectedSection.currentAttendance + attendanceCount >
+                selectedSection.capacity
+            " (click)="enterSection(); $event.stopPropagation()">
+
+                    <span>＋</span>
+                    دخول {{ attendanceCount }}
+
+                </button>
+
+
+                <button class="exit-btn" [disabled]="
+                attendanceUpdating ||
+                attendanceCount <= 0 ||
+                attendanceCount >
+                selectedSection.currentAttendance
+            " (click)="exitSection(); $event.stopPropagation()">
+
+                    <span>−</span>
+                    خروج {{ attendanceCount }}
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Progress -->
+
+        <div class="panel-progress" *ngIf="!selectedSection.noData">
+
+            <div class="panel-progress-bar" [style.width.%]="getPercentageBySection(selectedSection)"
+                [style.background]="getColorBySection(selectedSection)"></div>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="panel-status" *ngIf="!selectedSection.noData" [style.color]="getColorBySection(selectedSection)">
+
+            <ng-container *ngIf="getPercentageBySection(selectedSection) < 50">
+                🟢 الإشغال منخفض
+            </ng-container>
+
+
+            <ng-container *ngIf="
+          getPercentageBySection(selectedSection) >= 50 &&
+          getPercentageBySection(selectedSection) < 80
+        ">
+                🟠 الإشغال متوسط
+            </ng-container>
+
+
+            <ng-container *ngIf="getPercentageBySection(selectedSection) >= 80">
+                🔴 الإشغال مرتفع
+            </ng-container>
+
+        </div>
+
+    </div>
+
+
+
+
+    <!-- ========================= -->
+    <!-- Map Controls -->
+    <!-- ========================= -->
+
+    <div class="map-controls">
+
+        <button title="تكبير" (click)="zoomIn(); $event.stopPropagation()">
+            +
+        </button>
+
+        <button title="تصغير" (click)="zoomOut(); $event.stopPropagation()">
+            −
+        </button>
+
+        <button title="إعادة ضبط" (click)="resetZoom(); $event.stopPropagation()">
+            ⟳
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Legend -->
+    <!-- ========================= -->
+
+    <div class="legend">
+
+        <div>
+            <span class="legend-color green"></span>
+            أقل من 50%
+        </div>
+
+        <div>
+            <span class="legend-color orange"></span>
+            50% - 79%
+        </div>
+
+        <div>
+            <span class="legend-color red"></span>
+            80% فأكثر
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Tooltip -->
+    <!-- ========================= -->
+
+    <div class="tooltip" *ngIf="tooltip.visible" [style.left.px]="tooltip.x" [style.top.px]="tooltip.y">
+        {{ tooltip.content }}
+    </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- Loading -->
+<!-- ========================= -->
+
+<div class="loading" *ngIf="loading">
+    <span class="loading-spinner"></span>
+    جاري تحديث بيانات الخريطة...
+</div>

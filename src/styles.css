@@ -1,1 +1,320 @@
 /* You can add global styles to this file, and also import other style files */
+/* =========================================
+   Maintenance SweetAlert Form
+========================================= */
+
+.clean-maintenance-popup {
+    background: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 25px !important;
+}
+
+.clean-maintenance-popup .swal2-title {
+    color: #111827 !important;
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    margin-bottom: 20px !important;
+}
+
+.maintenance-form {
+    direction: rtl;
+    text-align: right;
+    width: 100%;
+}
+
+.form-field {
+    margin-bottom: 16px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.maintenance-form .form-control {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    padding: 0 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.maintenance-form textarea.form-control {
+    height: 80px;
+    padding: 10px 12px;
+    resize: vertical;
+}
+
+.maintenance-form .form-control:focus {
+    border-color: #facc15;
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+}
+
+.maintenance-form .form-control::placeholder {
+    color: #9ca3af;
+}
+
+.maintenance-form select.form-control {
+    cursor: pointer;
+}
+
+.maintenance-form select.form-control option {
+    background: #ffffff;
+    color: #111827;
+}
+
+.clean-confirm-btn {
+    background: #facc15 !important;
+    color: #111827 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+    padding: 10px 20px !important;
+}
+
+.clean-cancel-btn {
+    background: #e5e7eb !important;
+    color: #374151 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 10px 20px !important;
+}
+
+@media (max-width: 600px) {
+
+    .clean-maintenance-popup {
+        width: calc(100% - 25px) !important;
+        padding: 20px !important;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+}
+
+/* =========================================
+   INCIDENT CENTER - SWEETALERT
+========================================= */
+
+.clean-incident-popup {
+    background: #111827 !important;
+    border: 1px solid #374151 !important;
+    border-radius: 16px !important;
+    color: #f8fafc !important;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55) !important;
+}
+
+.clean-incident-popup .swal2-title {
+    color: #f8fafc !important;
+    font-size: 21px !important;
+    font-weight: 800 !important;
+}
+
+.clean-incident-popup .swal2-html-container {
+    margin: 15px 0 0 !important;
+}
+
+
+/* =========================================
+   INCIDENT FORM
+========================================= */
+
+.incident-form {
+    direction: rtl;
+    text-align: right;
+    width: 100%;
+}
+
+.incident-form .form-field {
+    margin-bottom: 16px;
+}
+
+.incident-form .form-field label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.incident-form .form-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+}
+
+.incident-form .form-control {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 12px;
+
+    border: 1px solid #374151;
+    border-radius: 8px;
+
+    background: #1f2937;
+    color: #f8fafc;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.incident-form .form-control:focus {
+    background: #111827;
+
+    border-color: #facc15;
+
+    box-shadow:
+        0 0 0 2px rgba(250, 204, 21, 0.12);
+}
+
+.incident-form .form-control::placeholder {
+    color: #64748b;
+}
+
+.incident-form textarea.form-control {
+    min-height: 80px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.incident-form select.form-control {
+    cursor: pointer;
+}
+
+.incident-form select.form-control option {
+    background: #1f2937;
+    color: #f8fafc;
+}
+
+
+/* =========================================
+   SWEETALERT BUTTONS
+========================================= */
+
+.clean-confirm-btn {
+    background: #facc15 !important;
+    color: #111827 !important;
+
+    border: none !important;
+    border-radius: 8px !important;
+
+    font-family: inherit !important;
+    font-weight: 800 !important;
+
+    padding: 9px 18px !important;
+}
+
+.clean-confirm-btn:hover {
+    background: #fde047 !important;
+}
+
+.clean-cancel-btn {
+    background: #e5e7eb !important;
+    color: #374151 !important;
+
+    border: none !important;
+    border-radius: 8px !important;
+
+    font-family: inherit !important;
+    font-weight: 700 !important;
+
+    padding: 9px 18px !important;
+}
+
+.clean-cancel-btn:hover {
+    background: #d1d5db !important;
+}
+
+
+/* =========================================
+   DELETE BUTTON
+========================================= */
+
+.clean-delete-btn {
+    background: #dc2626 !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: 8px !important;
+
+    font-family: inherit !important;
+    font-weight: 800 !important;
+
+    padding: 9px 18px !important;
+}
+
+.clean-delete-btn:hover {
+    background: #b91c1c !important;
+}
+
+
+/* =========================================
+   SWEETALERT VALIDATION
+========================================= */
+
+.clean-incident-popup .swal2-validation-message {
+    margin-top: 10px !important;
+
+    background: #3f1115 !important;
+
+    color: #fca5a5 !important;
+
+    border-radius: 8px !important;
+
+    font-size: 12px !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .incident-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

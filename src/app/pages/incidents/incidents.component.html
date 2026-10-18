@@ -1,0 +1,571 @@
+<div class="incidents-page">
+
+    <!-- Header -->
+    <div class="page-header">
+
+        <div>
+            <h1>🚨 مركز الحالات والطوارئ</h1>
+
+            <p>
+                متابعة بلاغات الأطفال المفقودين والحالات الطارئة داخل النادي
+            </p>
+        </div>
+
+        <div class="live-status">
+            <span></span>
+            مباشر
+        </div>
+
+    </div>
+
+
+    <!-- Summary -->
+    <div class="summary-cards">
+
+        <div class="summary-card total">
+            <div class="summary-icon">📋</div>
+
+            <div>
+                <span class="summary-label">
+                    إجمالي الحالات
+                </span>
+
+                <strong>
+                    {{ getTotalIncidents() }}
+                </strong>
+            </div>
+        </div>
+
+
+        <div class="summary-card missing">
+            <div class="summary-icon">🚨</div>
+
+            <div>
+                <span class="summary-label">
+                    أطفال مفقودين
+                </span>
+
+                <strong>
+                    {{ getMissingChildren() }}
+                </strong>
+            </div>
+        </div>
+
+
+        <div class="summary-card searching">
+            <div class="summary-icon">🔎</div>
+
+            <div>
+                <span class="summary-label">
+                    جاري البحث
+                </span>
+
+                <strong>
+                    {{ getSearchingIncidents() }}
+                </strong>
+            </div>
+        </div>
+
+
+        <div class="summary-card found">
+            <div class="summary-icon">✅</div>
+
+            <div>
+                <span class="summary-label">
+                    تم العثور
+                </span>
+
+                <strong>
+                    {{ getFoundIncidents() }}
+                </strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Main Action -->
+    <div class="incident-actions">
+
+        <button class="missing-child-btn" (click)="addMissingChild()">
+
+            <span class="btn-icon">🚨</span>
+
+            <span>
+                <strong>
+                    بلاغ طفل مفقود
+                </strong>
+
+                <small>
+                    تسجيل بلاغ جديد وبدء البحث
+                </small>
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div class="incidents-loading" *ngIf="loading">
+
+        <div class="loading-spinner"></div>
+
+        <span>
+            جاري تحميل الحالات...
+        </span>
+
+    </div>
+
+
+    <!-- Filters -->
+
+    <div class="incident-filters" *ngIf="!loading && incidents.length">
+
+        <!-- Search -->
+
+        <div class="incident-search">
+
+            <span>🔎</span>
+
+            <input type="text" [(ngModel)]="searchText" placeholder="ابحث باسم الطفل أو المكان أو البلاغ..." />
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="incident-filter-field">
+
+            <select [(ngModel)]="selectedStatus">
+
+                <option value="All">
+                    كل الحالات
+                </option>
+
+                <option value="Open">
+                    بلاغ جديد
+                </option>
+
+                <option value="Searching">
+                    جاري البحث
+                </option>
+
+                <option value="Found">
+                    تم العثور
+                </option>
+
+                <option value="Closed">
+                    مغلقة
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Type -->
+
+        <div class="incident-filter-field">
+
+            <select [(ngModel)]="selectedType">
+
+                <option value="All">
+                    كل الأنواع
+                </option>
+
+                <option value="MissingChild">
+                    طفل مفقود
+                </option>
+
+                <option value="Incident">
+                    حادثة
+                </option>
+
+                <option value="Injury">
+                    إصابة
+                </option>
+
+                <option value="Behavior">
+                    مشكلة سلوكية
+                </option>
+
+                <option value="Other">
+                    أخرى
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Clear -->
+
+        <button class="clear-incident-filters" (click)="clearFilters()">
+
+            ↻ مسح
+
+        </button>
+
+    </div>
+
+    <!-- Incidents List -->
+    <div class="incidents-list" *ngIf="
+        !loading &&
+        filteredIncidents.length
+    ">
+
+        <div class="section-title">
+
+            <div>
+                <h2>الحالات الحالية</h2>
+
+                <span>
+                    {{ incidents.length }} حالة مسجلة
+                </span>
+            </div>
+
+        </div>
+
+        <!-- No Filter Results -->
+
+        <div class="incident-no-results" *ngIf="
+        !loading &&
+        incidents.length &&
+        !filteredIncidents.length
+    ">
+
+            <div class="no-results-icon">
+                🔎
+            </div>
+
+            <h2>
+                لا توجد نتائج مطابقة
+            </h2>
+
+            <p>
+                لم نجد أي حالات تطابق البحث أو الفلاتر الحالية
+            </p>
+
+            <button class="clear-results-btn" (click)="clearFilters()">
+
+                ↻ مسح الفلاتر
+
+            </button>
+
+        </div>
+
+
+        <!-- Incident Card -->
+        <div class="incident-card" *ngFor="let incident of filteredIncidents" [class.urgent]="
+                incident.type === 'MissingChild' &&
+                (
+                    incident.status === 'Open' ||
+                    incident.status === 'Searching'
+                )
+            ">
+
+            <!-- Card Header -->
+            <div class="incident-card-header">
+
+                <div class="incident-title-area">
+
+                    <div class="incident-type-icon">
+                        {{
+                        incident.type === 'MissingChild'
+                        ? '🚨'
+                        : '⚠️'
+                        }}
+                    </div>
+
+                    <div>
+
+                        <span class="incident-type">
+                            {{ getTypeArabic(incident.type) }}
+                        </span>
+
+                        <h3>
+                            {{ incident.title }}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <span class="status-badge" [ngClass]="{
+                        'status-open':
+                            incident.status === 'Open',
+
+                        'status-searching':
+                            incident.status === 'Searching',
+
+                        'status-found':
+                            incident.status === 'Found',
+
+                        'status-closed':
+                            incident.status === 'Closed'
+                    }">
+
+                    {{
+                    getStatusArabic(
+                    incident.status
+                    )
+                    }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Child Information -->
+            <div class="child-info" *ngIf="
+                    incident.type === 'MissingChild'
+                ">
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        👤 الاسم
+                    </span>
+
+                    <strong>
+                        {{ incident.childName }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        🎂 العمر
+                    </span>
+
+                    <strong>
+                        {{ incident.childAge }}
+                        سنة
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        ⚧ النوع
+                    </span>
+
+                    <strong>
+                        {{
+                        incident.childGender === 'Male'
+                        ? 'ولد'
+                        : 'بنت'
+                        }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item clothing">
+
+                    <span class="info-label">
+                        👕 الملابس
+                    </span>
+
+                    <strong>
+                        {{
+                        incident.clothingDescription
+                        }}
+                    </strong>
+
+                </div>
+
+
+                <div class="info-item location">
+
+                    <span class="info-label">
+                        📍 آخر مكان شوهد فيه
+                    </span>
+
+                    <strong>
+                        {{
+                        incident.lastSeenLocation
+                        }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Description -->
+            <div class="incident-description" *ngIf="incident.description">
+
+                <span>
+                    📝 تفاصيل إضافية
+                </span>
+
+                <p>
+                    {{ incident.description }}
+                </p>
+
+            </div>
+
+
+            <!-- Meta -->
+            <div class="incident-meta">
+
+                <div>
+                    👤 المُبلّغ:
+                    <strong>
+                        {{
+                        incident.reportedBy ||
+                        'غير محدد'
+                        }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    👮 المسؤول:
+                    <strong>
+                        {{
+                        getAssignedToArabic(
+                        incident.assignedTo
+                        )
+                        }}
+                    </strong>
+                </div>
+
+
+                <div>
+                    🕒 وقت البلاغ:
+                    <strong>
+                        {{
+                        incident.createdAt
+                        | date:'dd/MM/yyyy - hh:mm a'
+                        }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- Found / Closed Times -->
+            <div class="incident-times" *ngIf="
+                    incident.foundAt ||
+                    incident.closedAt
+                ">
+
+                <span *ngIf="incident.foundAt">
+
+                    ✅ تم العثور:
+                    {{
+                    incident.foundAt
+                    | date:'dd/MM/yyyy - hh:mm a'
+                    }}
+
+                </span>
+
+
+                <span *ngIf="incident.closedAt">
+
+                    🔒 تم الإغلاق:
+                    {{
+                    incident.closedAt
+                    | date:'dd/MM/yyyy - hh:mm a'
+                    }}
+
+                </span>
+
+            </div>
+
+
+            <!-- Actions -->
+            <div class="incident-actions-row">
+
+
+                <!-- Open -->
+                <button *ngIf="incident.status === 'Open'" class="action-btn assign" (click)="assignIncident(incident)">
+
+                    👤 تعيين مسؤول
+
+                </button>
+
+
+                <!-- Searching -->
+                <button *ngIf="
+                        incident.status === 'Searching'
+                    " class="action-btn found" (click)="
+                        updateStatus(
+                            incident,
+                            'Found'
+                        )
+                    ">
+
+                    ✅ تم العثور على الطفل
+
+                </button>
+
+
+                <!-- Found -->
+                <button *ngIf="
+                        incident.status === 'Found'
+                    " class="action-btn close" (click)="
+                        updateStatus(
+                            incident,
+                            'Closed'
+                        )
+                    ">
+
+                    🔒 إغلاق الحالة
+
+                </button>
+
+
+                <!-- Delete -->
+                <button class="action-btn delete" (click)="
+                        deleteIncident(
+                            incident
+                        )
+                    ">
+
+                    🗑️ حذف
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Empty -->
+    <div class="incident-empty" *ngIf="
+            !loading &&
+            !incidents.length
+        ">
+
+        <div class="empty-icon">
+            🚨
+        </div>
+
+        <h2>
+            لا توجد حالات مسجلة
+        </h2>
+
+        <p>
+            لم يتم تسجيل أي بلاغات أو حالات طارئة حتى الآن
+        </p>
+
+        <button class="empty-action" (click)="addMissingChild()">
+
+            🚨 تسجيل بلاغ طفل مفقود
+
+        </button>
+
+    </div>
+
+</div>

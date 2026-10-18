@@ -1,0 +1,752 @@
+<div class="maintenance-page" dir="rtl">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                🔧 الصيانات
+            </h1>
+
+            <p>
+                متابعة بلاغات الصيانة والمشكلات داخل النادي
+            </p>
+
+        </div>
+
+        <div class="live-status">
+
+            <span></span>
+
+            مباشر
+
+        </div>
+
+    </div>
+
+
+    <!-- Summary -->
+
+    <div class="summary-cards">
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                🔧
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getTotalIssues() }}
+                </strong>
+
+                <span>
+                    إجمالي البلاغات
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card new">
+
+            <div class="summary-icon">
+                🆕
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getNewIssues() }}
+                </strong>
+
+                <span>
+                    جديدة
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card progress">
+
+            <div class="summary-icon">
+                🔄
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getInProgressIssues() }}
+                </strong>
+
+                <span>
+                    جاري العمل
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card resolved">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getResolvedIssues() }}
+                </strong>
+
+                <span>
+                    تم الحل
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card critical">
+
+            <div class="summary-icon">
+                🔴
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getCriticalIssues() }}
+                </strong>
+
+                <span>
+                    أولوية حرجة
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================================
+     Maintenance Dashboard
+========================================= -->
+
+    <div class="maintenance-dashboard">
+
+        <!-- Dashboard Header -->
+
+        <div class="dashboard-section-header">
+
+            <div>
+                <h2>📊 ملخص الصيانة</h2>
+
+                <p>
+                    نظرة سريعة على حالة بلاغات الصيانة داخل النادي
+                </p>
+            </div>
+
+            <div class="dashboard-total">
+                {{ getTotalIssues() }} بلاغ
+            </div>
+
+        </div>
+
+
+        <!-- Status Overview -->
+
+        <div class="dashboard-status-grid">
+
+            <div class="dashboard-status-card">
+
+                <div class="dashboard-status-icon new">
+                    🆕
+                </div>
+
+                <div>
+                    <strong>
+                        {{ getNewIssues() }}
+                    </strong>
+
+                    <span>
+                        بلاغات جديدة
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-status-card">
+
+                <div class="dashboard-status-icon assigned">
+                    👤
+                </div>
+
+                <div>
+                    <strong>
+                        {{ getAssignedIssues() }}
+                    </strong>
+
+                    <span>
+                        تم التعيين
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-status-card">
+
+                <div class="dashboard-status-icon progress">
+                    🔄
+                </div>
+
+                <div>
+                    <strong>
+                        {{ getInProgressIssues() }}
+                    </strong>
+
+                    <span>
+                        جاري العمل
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-status-card">
+
+                <div class="dashboard-status-icon resolved">
+                    ✅
+                </div>
+
+                <div>
+                    <strong>
+                        {{ getResolvedIssues() }}
+                    </strong>
+
+                    <span>
+                        تم الحل
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Analytics -->
+
+        <div class="dashboard-analytics">
+
+            <!-- Sectors -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-header">
+
+                    <div>
+                        <h3>📍 توزيع البلاغات</h3>
+
+                        <span>
+                            حسب القطاع
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="sector-bars">
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+                            <span>البحيرة</span>
+
+                            <strong>
+                                {{ getLakeIssues() }}
+                            </strong>
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div class="bar-fill lake" [style.width.%]="
+                                getTotalIssues()
+                                ? (getLakeIssues() / getTotalIssues()) * 100
+                                : 0
+                            ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+                            <span>الجاردن</span>
+
+                            <strong>
+                                {{ getGardenIssues() }}
+                            </strong>
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div class="bar-fill garden" [style.width.%]="
+                                getTotalIssues()
+                                ? (getGardenIssues() / getTotalIssues()) * 100
+                                : 0
+                            ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bar-item">
+
+                        <div class="bar-label">
+                            <span>الملاعب</span>
+
+                            <strong>
+                                {{ getFieldsIssues() }}
+                            </strong>
+                        </div>
+
+                        <div class="bar-track">
+
+                            <div class="bar-fill fields" [style.width.%]="
+                                getTotalIssues()
+                                ? (getFieldsIssues() / getTotalIssues()) * 100
+                                : 0
+                            ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Categories -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-header">
+
+                    <div>
+                        <h3>🛠️ أنواع الأعطال</h3>
+
+                        <span>
+                            حسب نوع البلاغ
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="category-grid">
+
+                    <div class="category-item">
+                        <span>⚡</span>
+                        <div>
+                            <strong>
+                                {{ getElectricalIssues() }}
+                            </strong>
+                            <small>كهرباء</small>
+                        </div>
+                    </div>
+
+
+                    <div class="category-item">
+                        <span>🚰</span>
+                        <div>
+                            <strong>
+                                {{ getPlumbingIssues() }}
+                            </strong>
+                            <small>سباكة</small>
+                        </div>
+                    </div>
+
+
+                    <div class="category-item">
+                        <span>🧹</span>
+                        <div>
+                            <strong>
+                                {{ getCleaningIssues() }}
+                            </strong>
+                            <small>نظافة</small>
+                        </div>
+                    </div>
+
+
+                    <div class="category-item">
+                        <span>⚙️</span>
+                        <div>
+                            <strong>
+                                {{ getEquipmentIssues() }}
+                            </strong>
+                            <small>معدات</small>
+                        </div>
+                    </div>
+
+
+                    <div class="category-item">
+                        <span>🛡️</span>
+                        <div>
+                            <strong>
+                                {{ getSafetyIssues() }}
+                            </strong>
+                            <small>سلامة</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Resolution -->
+
+            <div class="analytics-card resolution-card">
+
+                <div class="analytics-header">
+
+                    <div>
+                        <h3>✅ معدل الحل</h3>
+
+                        <span>
+                            نسبة البلاغات المحلولة
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="resolution-content">
+
+                    <div class="resolution-circle">
+
+                        <strong>
+                            {{ getResolvedPercentage() }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="resolution-info">
+
+                        <strong>
+                            {{ getResolvedIssues() }}
+                        </strong>
+
+                        <span>
+                            من أصل
+                            {{ getTotalIssues() }}
+                            بلاغ
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Actions -->
+
+    <div class="maintenance-actions">
+
+        <button class="add-issue-btn" (click)="addIssue()">
+
+            ➕ بلاغ جديد
+
+        </button>
+
+    </div>
+
+    <!-- Search & Filters -->
+
+    <div class="maintenance-filters">
+
+        <!-- Search -->
+
+        <div class="filter-search">
+
+            <span>🔎</span>
+
+            <input type="text" [(ngModel)]="searchText" placeholder="ابحث عن بلاغ أو وصف..." />
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="filter-field">
+
+            <label>الحالة</label>
+
+            <select [(ngModel)]="selectedStatus">
+
+                <option value="All">
+                    كل الحالات
+                </option>
+
+                <option value="New">
+                    جديد
+                </option>
+
+                <option value="Assigned">
+                    تم التعيين
+                </option>
+
+                <option value="InProgress">
+                    جاري العمل
+                </option>
+
+                <option value="Resolved">
+                    تم الحل
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Priority -->
+
+        <div class="filter-field">
+
+            <label>الأولوية</label>
+
+            <select [(ngModel)]="selectedPriority">
+
+                <option value="All">
+                    كل الأولويات
+                </option>
+
+                <option value="Low">
+                    منخفضة
+                </option>
+
+                <option value="Medium">
+                    متوسطة
+                </option>
+
+                <option value="High">
+                    عالية
+                </option>
+
+                <option value="Critical">
+                    حرجة
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Sector -->
+
+        <div class="filter-field">
+
+            <label>القطاع</label>
+
+            <select [(ngModel)]="selectedSector">
+
+                <option value="All">
+                    كل القطاعات
+                </option>
+
+                <option value="Lake">
+                    البحيرة
+                </option>
+
+                <option value="Garden">
+                    الجاردن
+                </option>
+
+                <option value="Fields">
+                    الملاعب
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Clear -->
+
+        <button class="clear-filters-btn" (click)="clearFilters()">
+
+            ✖ مسح الفلاتر
+
+        </button>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div class="maintenance-loading" *ngIf="loading">
+
+        <div class="loading-spinner"></div>
+
+        جاري تحميل البلاغات...
+
+    </div>
+
+
+    <!-- Issues -->
+
+    <div class="issues-list" *ngIf="!loading && filteredIssues.length">
+
+        <div class="issue-card" *ngFor="let issue of filteredIssues">
+
+
+            <div class="issue-top">
+
+                <div>
+
+                    <div class="issue-title">
+
+                        {{ issue.title }}
+
+                    </div>
+
+                    <div class="issue-description">
+
+                        {{ issue.description }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="priority-badge" [ngClass]="issue.priority.toLowerCase()">
+                    {{ getPriorityArabic(issue.priority) }}
+                </div>
+
+            </div>
+
+
+            <div class="issue-info">
+
+                <div>
+                    📍
+                    {{ getSectionArabic(issue.sectionName) }}
+                </div>
+
+                <div>
+                    🏢
+                    {{ getSectorArabic(issue.sector) }}
+                </div>
+
+                <div>
+                    🛠️
+                    {{ getCategoryArabic(issue.category) }}
+                </div>
+
+                <div>
+                    👮‍♂️
+                    {{ issue.reportedBy || 'غير محدد' }}
+                </div>
+
+                <div *ngIf="issue.assignedTo">
+                    👤
+                    {{ getAssignedToArabic(issue.assignedTo) }}
+                </div>
+
+            </div>
+
+
+            <div class="issue-bottom">
+
+                <div class="status-badge" [ngClass]="
+            issue.status.toLowerCase()
+        ">
+
+                    {{ getStatusArabic(issue.status) }}
+
+                </div>
+
+
+                <div class="issue-date">
+
+                    {{ issue.createdAt | date:'dd/MM/yyyy HH:mm' }}
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="issue-actions">
+
+                <!-- تعيين مسؤول -->
+                <button *ngIf="issue.status === 'New'" class="issue-action-btn assign" (click)="assignIssue(issue)">
+                    👤 تعيين مسؤول
+                </button>
+
+
+                <!-- بدء العمل -->
+                <button *ngIf="issue.status === 'Assigned'" class="issue-action-btn start"
+                    (click)="updateIssueStatus(issue, 'InProgress')">
+                    ▶️ بدء العمل
+                </button>
+
+
+                <!-- تم الحل -->
+                <button *ngIf="issue.status === 'InProgress'" class="issue-action-btn resolve"
+                    (click)="updateIssueStatus(issue, 'Resolved')">
+                    ✅ تم الحل
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- Empty -->
+
+    <div class="maintenance-empty" *ngIf="!loading && issues.length && !filteredIssues.length">
+
+        <div class="empty-icon">🔎</div>
+
+        <h3>لا توجد نتائج</h3>
+
+        <p>
+            لا توجد بلاغات مطابقة للبحث أو الفلاتر الحالية
+        </p>
+
+        <button class="clear-filters-btn" (click)="clearFilters()">
+
+            ✖ مسح الفلاتر
+
+        </button>
+
+    </div>
+
+</div>

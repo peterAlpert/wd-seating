@@ -1,0 +1,367 @@
+<div class="alerts-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+            <h1>🚨 مركز التنبيهات</h1>
+
+            <p>
+                متابعة المناطق التي تحتاج إلى تدخل أو متابعة
+            </p>
+        </div>
+
+        <div class="live-status">
+            <span></span>
+            مباشر
+        </div>
+
+    </div>
+
+
+    <!-- Summary -->
+
+    <div class="summary-cards">
+
+        <div class="summary-card total" (click)="setFilter('all')">
+
+            <span class="icon">🚨</span>
+
+            <div>
+                <small>التنبيهات المفتوحة</small>
+
+                <strong>
+                    {{ totalAlerts }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card medium" (click)="setFilter('medium')">
+
+            <span class="icon">🟠</span>
+
+            <div>
+                <small>تحتاج متابعة</small>
+
+                <strong>
+                    {{ mediumAlerts }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card high" (click)="setFilter('high')">
+
+            <span class="icon">🔴</span>
+
+            <div>
+                <small>مرتفعة</small>
+
+                <strong>
+                    {{ highAlerts }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card critical" (click)="setFilter('critical')">
+
+            <span class="icon">🚨</span>
+
+            <div>
+                <small>حرجة</small>
+
+                <strong>
+                    {{ criticalAlerts }}
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Filters -->
+
+    <div class="filters">
+
+        <button [class.active]="selectedFilter === 'all'" (click)="setFilter('all')">
+
+            الكل
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'medium'" (click)="setFilter('medium')">
+
+            🟠 تحتاج متابعة
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'high'" (click)="setFilter('high')">
+
+            🔴 مرتفعة
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'critical'" (click)="setFilter('critical')">
+
+            🚨 حرجة
+
+        </button>
+
+    </div>
+
+
+    <!-- No Alerts -->
+
+    <div class="no-alerts" *ngIf="
+            !loading &&
+            filteredAlerts.length === 0
+        ">
+
+        <div>🟢</div>
+
+        <strong>
+            لا توجد تنبيهات مفتوحة
+        </strong>
+
+        <span>
+            جميع المناطق ضمن المستويات الطبيعية
+        </span>
+
+    </div>
+
+
+    <!-- Alerts -->
+
+    <div class="alerts-list">
+
+        <div class="alert-card" *ngFor="
+                let alert of filteredAlerts
+            " [class.medium]="
+                alert.level === 'medium'
+            " [class.high]="
+                alert.level === 'high'
+            " [class.critical]="
+                alert.level === 'critical'
+            " [class.resolved]="
+                alert.status === 'Resolved'
+            " (click)="
+                goToSection(alert.sectionId)
+            ">
+
+
+            <!-- Alert Icon -->
+
+            <div class="alert-icon">
+
+                <span *ngIf="
+                        alert.level === 'medium'
+                    ">
+
+                    🟠
+
+                </span>
+
+
+                <span *ngIf="
+                        alert.level === 'high'
+                    ">
+
+                    🔴
+
+                </span>
+
+
+                <span *ngIf="
+                        alert.level === 'critical'
+                    ">
+
+                    🚨
+
+                </span>
+
+            </div>
+
+
+            <!-- Alert Info -->
+
+            <div class="alert-info">
+
+                <div class="alert-title">
+
+                    <strong>
+                        {{ alert.title }}
+                    </strong>
+
+                    <span>
+                        {{ alert.sectorName }}
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    {{ alert.sectionName }}
+                </h3>
+
+
+                <p>
+                    {{ alert.message }}
+                </p>
+
+
+                <!-- Duration -->
+
+                <div class="alert-meta">
+
+                    <span>
+                        ⏱️ بدأ
+                        {{ getStartedTime(alert.startedAt) }}
+                    </span>
+
+                    <span>
+                        📅 تم إنشاء التنبيه
+                        {{ getStartedTime(alert.createdAt) }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Data -->
+
+            <div class="alert-data">
+
+                <strong>
+                    {{ alert.percentage }}%
+                </strong>
+
+                <span>
+                    {{ alert.attendance }}
+                    /
+                    {{ alert.capacity }}
+                    شخص
+                </span>
+
+
+                <!-- Status -->
+
+                <div class="alert-status" [class.new]="
+                        alert.status === 'New'
+                    " [class.acknowledged]="
+                        alert.status === 'Acknowledged'
+                    " [class.handling]="
+                        alert.status === 'Handling'
+                    " [class.resolved]="
+                        alert.status === 'Resolved'
+                    ">
+
+                    <span>
+                        {{ getStatusIcon(alert.status) }}
+                    </span>
+
+                    {{ getStatusText(alert.status) }}
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="alert-actions" (click)="$event.stopPropagation()">
+
+
+                <!-- New -->
+
+                <button *ngIf="
+                        alert.status === 'New'
+                    " class="action-btn acknowledge" [disabled]="
+                        actionLoadingId === alert.id
+                    " (click)="
+                        acknowledgeAlert(
+                            alert,
+                            $event
+                        )
+                    ">
+
+                    👁️
+                    اطلاع
+
+                </button>
+
+
+                <!-- Acknowledged -->
+
+                <button *ngIf="
+                        alert.status === 'Acknowledged'
+                    " class="action-btn handling" [disabled]="
+                        actionLoadingId === alert.id
+                    " (click)="
+                        startAlertHandling(
+                            alert,
+                            $event
+                        )
+                    ">
+
+                    🛠️
+                    بدء التعامل
+
+                </button>
+
+
+                <!-- Handling -->
+
+                <button *ngIf="
+                        alert.status === 'Handling'
+                    " class="action-btn resolve" [disabled]="
+                        actionLoadingId === alert.id
+                    " (click)="
+                        resolveAlert(
+                            alert,
+                            $event
+                        )
+                    ">
+
+                    ✅
+                    تم الحل
+
+                </button>
+
+
+                <!-- Loading -->
+
+                <span class="action-loading" *ngIf="
+                        actionLoadingId === alert.id
+                    ">
+
+                    جاري التحديث...
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div class="loading" *ngIf="loading">
+
+        جاري تحديث التنبيهات...
+
+    </div>
+
+</div>

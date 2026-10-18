@@ -1,0 +1,19 @@
+<div class="display">
+
+    <div class="sector" *ngFor="let section of sections">
+
+        <div class="circle" [style.background]="getColor(section)">
+
+            <div class="inside">
+                <h2>{{getPercentage(section)}}%</h2>
+                <p>{{section.sectionName}}</p>
+                <small>
+                    {{section.currentAttendance}} / {{section.capacity}}
+                </small>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

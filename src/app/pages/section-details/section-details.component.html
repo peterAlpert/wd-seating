@@ -1,0 +1,203 @@
+<div class="details-page">
+
+    <!-- Header -->
+    <div class="details-header">
+
+        <button class="back-btn" (click)="goBack()">
+
+            ←
+            <span>العودة للـ Dashboard</span>
+
+        </button>
+
+        <button class="map-btn" (click)="goToMap()">
+
+            🗺️ الخريطة
+
+        </button>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div class="loading" *ngIf="loading">
+
+        جاري تحميل بيانات المنطقة...
+
+    </div>
+
+
+    <!-- Details -->
+    <div class="details-content" *ngIf="section && !loading">
+
+        <!-- Title -->
+        <div class="section-title">
+
+            <div>
+
+                <span class="sector-name">
+                    {{ section.sectorName }}
+                </span>
+
+                <h1>
+                    {{ section.sectionName }}
+                </h1>
+
+                <p>
+                    تفاصيل الإشغال الحالية
+                </p>
+
+            </div>
+
+            <div class="status-badge" [class.low]="getStatusClass() === 'low'"
+                [class.medium]="getStatusClass() === 'medium'" [class.high]="getStatusClass() === 'high'"
+                [class.critical]="getStatusClass() === 'critical'">
+
+                {{ getStatus() }}
+
+            </div>
+
+        </div>
+
+
+        <!-- Main occupancy -->
+        <div class="occupancy-card">
+
+            <div class="occupancy-number">
+
+                <strong>
+                    {{ getPercentage() }}%
+                </strong>
+
+                <span>
+                    نسبة الإشغال
+                </span>
+
+            </div>
+
+
+            <div class="occupancy-progress">
+
+                <div class="occupancy-progress-bar" [class.low]="getStatusClass() === 'low'"
+                    [class.medium]="getStatusClass() === 'medium'" [class.high]="getStatusClass() === 'high'"
+                    [class.critical]="getStatusClass() === 'critical'" [style.width.%]="getPercentage()">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Stats -->
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <span>
+                    الحضور الحالي
+                </span>
+
+                <strong>
+                    {{ section.currentAttendance }}
+                </strong>
+
+                <small>
+                    شخص
+                </small>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🏢
+                </div>
+
+                <span>
+                    السعة
+                </span>
+
+                <strong>
+                    {{ section.capacity }}
+                </strong>
+
+                <small>
+                    شخص
+                </small>
+
+            </div>
+
+
+            <div class="stat-card available">
+
+                <div class="stat-icon">
+                    🟢
+                </div>
+
+                <span>
+                    الأماكن المتاحة
+                </span>
+
+                <strong>
+                    {{ getAvailable() }}
+                </strong>
+
+                <small>
+                    مكان
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- Attendance Controls -->
+        <div class="control-card">
+
+            <h2>
+                التحكم في الحضور
+            </h2>
+
+            <p>
+                تسجيل دخول أو خروج شخص من المنطقة
+            </p>
+
+
+            <div class="control-buttons">
+
+                <button class="enter-btn" (click)="enter()" [disabled]="
+            attendanceUpdating ||
+            section.currentAttendance >= section.capacity
+          ">
+
+                    <span>＋</span>
+
+                    دخول
+
+                </button>
+
+
+                <button class="exit-btn" (click)="exit()" [disabled]="
+            attendanceUpdating ||
+            section.currentAttendance <= 0
+          ">
+
+                    <span>−</span>
+
+                    خروج
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

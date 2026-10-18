@@ -1,0 +1,362 @@
+<div class="heat-map-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+            <h1>🔥 الخريطة الحرارية للنادي</h1>
+
+            <p>
+                تحليل إشغال مناطق النادي خلال اليوم
+            </p>
+        </div>
+
+        <div class="date-control">
+
+            <label>
+                اختر اليوم
+            </label>
+
+            <input type="date" [(ngModel)]="selectedDate" (change)="loadHeatMap()" />
+
+        </div>
+
+    </div>
+
+    <div class="analysis-cards">
+
+        <div class="analysis-card peak-time">
+            <span class="icon">🔥</span>
+            <div>
+                <small>وقت الذروة</small>
+                <strong>{{ peakTime }}</strong>
+            </div>
+        </div>
+
+        <div class="analysis-card busiest">
+            <span class="icon">📍</span>
+            <div>
+                <small>أكثر منطقة ازدحامًا</small>
+                <strong>{{ busiestArea }}</strong>
+            </div>
+        </div>
+
+        <div class="analysis-card peak">
+            <span class="icon">📊</span>
+            <div>
+                <small>أعلى نسبة إشغال</small>
+                <strong>{{ peakPercentage }}%</strong>
+            </div>
+        </div>
+
+        <div class="analysis-card attendance">
+            <span class="icon">👥</span>
+            <div>
+                <small>أعلى عدد حضور</small>
+                <strong>{{ peakAttendance }}</strong>
+            </div>
+        </div>
+
+        <div class="analysis-card average">
+            <span class="icon">📈</span>
+            <div>
+                <small>متوسط الإشغال</small>
+                <strong>{{ averageOccupancy }}%</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sector-analysis">
+        <div class="sector-card" *ngFor="let sector of sectorAnalysis">
+
+            <div class="sector-card-header">
+
+                <strong>
+                    {{ sector.name }}
+                </strong>
+
+                <span>
+                    {{ sector.peakPercentage }}%
+                </span>
+
+            </div>
+
+            <div class="sector-card-body">
+
+                <div>
+                    <small>
+                        أكثر منطقة ازدحامًا
+                    </small>
+
+                    <strong>
+                        {{ sector.busiestArea }}
+                    </strong>
+                </div>
+
+                <div>
+                    <small>متوسط الإشغال</small>
+                    <strong>
+                        {{ sector.averagePercentage }}%
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="child-safety-section" *ngIf="childSafetyAnalysis.length > 0">
+
+        <div class="section-title">
+            <div>
+                <h2>🛡️ مناطق سلامة الأطفال</h2>
+
+                <p>
+                    تحليل كثافة الإشغال في مناطق الأطفال
+                </p>
+            </div>
+        </div>
+
+        <div class="child-safety-grid">
+
+            <div class="child-safety-card" *ngFor="
+        let zone of childSafetyAnalysis
+      " [ngClass]="{
+        normal: zone.safetyScore < 50,
+        attention:
+          zone.safetyScore >= 50 &&
+          zone.safetyScore < 70,
+        high:
+          zone.safetyScore >= 70 &&
+          zone.safetyScore < 85,
+        critical:
+          zone.safetyScore >= 85
+      }">
+
+                <div class="safety-card-header">
+
+                    <div>
+                        <span class="safety-icon">
+                            🧒
+                        </span>
+
+                        <div>
+                            <h3>
+                                {{ zone.sectionName }}
+                            </h3>
+
+                            <small>
+                                السعة: {{ zone.capacity }}
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="safety-score">
+                        {{ zone.safetyScore }}
+                    </div>
+
+                </div>
+
+
+                <div class="safety-level">
+
+                    <span>
+                        مستوى السلامة
+                    </span>
+
+                    <strong>
+                        {{ zone.safetyLevel }}
+                    </strong>
+
+                </div>
+
+
+                <div class="safety-stats">
+
+                    <div>
+                        <span>
+                            أعلى إشغال
+                        </span>
+
+                        <strong>
+                            {{ zone.peakPercentage }}%
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            متوسط الإشغال
+                        </span>
+
+                        <strong>
+                            {{ zone.averagePercentage }}%
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            مرات تجاوز 75%
+                        </span>
+
+                        <strong>
+                            {{ zone.highOccupancySnapshots }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Legend -->
+
+    <div class="legend">
+
+        <div>
+            <span class="legend-box low"></span>
+            أقل من 50%
+        </div>
+
+        <div>
+            <span class="legend-box medium"></span>
+            50% – 74%
+        </div>
+
+        <div>
+            <span class="legend-box high"></span>
+            75% – 89%
+        </div>
+
+        <div>
+            <span class="legend-box critical"></span>
+            90% فأكثر
+        </div>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div class="loading" *ngIf="loading">
+        جاري تحميل البيانات...
+    </div>
+
+
+    <!-- Error -->
+
+    <div class="error" *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+
+
+    <!-- Empty -->
+
+    <div class="empty" *ngIf="
+      !loading &&
+      !errorMessage &&
+      rows.length === 0
+    ">
+        لا توجد Snapshots لهذا اليوم.
+    </div>
+
+
+    <!-- Heat Map -->
+
+    <div class="table-container" *ngIf="!loading &&rows.length > 0" dir="rtl">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th class="section-column">
+                        المنطقة
+                    </th>
+
+                    <th>
+                        القطاع
+                    </th>
+
+                    <th *ngFor="let time of times">
+                        {{ time }}
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr *ngFor="let row of rows">
+
+                    <td class="section-name">
+
+                        <strong>
+                            {{ row.sectionName }}
+                        </strong>
+
+                        <small>
+                            Capacity:
+                            {{ row.capacity }}
+                        </small>
+
+                    </td>
+
+
+                    <td class="sector">
+
+                        {{ row.sectorName }}
+
+                    </td>
+
+
+                    <td *ngFor="let time of times" class="heat-cell">
+
+                        <ng-container *ngIf="
+                getValue(row, time) as value
+              ">
+
+                            <div class="cell" [ngClass]="
+                  getCellClass(
+                    value.percentage
+                  )
+                ">
+
+                                <strong>
+                                    {{ value.percentage }}%
+                                </strong>
+
+                                <small>
+                                    {{ value.attendance }}
+                                </small>
+
+                            </div>
+
+                        </ng-container>
+
+
+                        <span *ngIf="
+                !getValue(row, time)
+              " class="no-data">
+                            —
+                        </span>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

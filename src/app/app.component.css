@@ -1,0 +1,74 @@
+.floating-navigation {
+    position: fixed;
+    left: 18px;
+    top: 28px;
+    z-index: 2000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.floating-btn {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.floating-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.4);
+}
+
+.floating-btn:active {
+    transform: scale(0.94);
+}
+
+.back-btn {
+    background: #1e293b;
+    color: #ffffff;
+    border-color: #475569;
+}
+
+.back-icon {
+    font-size: 25px;
+    line-height: 1;
+}
+
+.dashboard-btn {
+    background: #facc15;
+    color: #111827;
+}
+
+@media (max-width: 600px) {
+    .floating-navigation {
+        left: 12px;
+        bottom: 20px;
+        gap: 10px;
+    }
+
+    .floating-btn {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-btn {
+        transition: none;
+    }
+}

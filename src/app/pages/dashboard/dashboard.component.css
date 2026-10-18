@@ -1,0 +1,1622 @@
+.dashboard-page {
+    min-height: 100vh;
+    padding: 30px;
+    background: #0f172a;
+    color: white;
+    direction: rtl;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Header
+========================= */
+
+.dashboard-title {
+    margin-bottom: 18px;
+}
+
+.dashboard-title h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 800;
+    color: #f8fafc;
+}
+
+.dashboard-title span {
+    display: block;
+    margin-top: 5px;
+    color: #22c55e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Dashboard Actions
+========================= */
+
+.dashboard-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.dashboard-actions button {
+    min-height: 42px;
+    padding: 10px 17px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.dashboard-actions button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Map */
+
+.map-btn {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid #334155;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.map-btn:hover {
+    background: #273449;
+    border-color: #475569;
+}
+
+
+/* History */
+
+.history-btn {
+    background: #22c55e;
+    color: #0f172a;
+    border: 1px solid #22c55e;
+
+    box-shadow:
+        0 5px 15px rgba(34, 197, 94, 0.15);
+}
+
+.history-btn:hover {
+    background: #4ade80;
+    border-color: #4ade80;
+}
+
+
+/* Alerts */
+
+.alert-btn {
+    background: #dc2626;
+    color: white;
+    border: 1px solid #ef4444;
+
+    box-shadow:
+        0 5px 15px rgba(220, 38, 38, 0.18);
+}
+
+.alert-btn:hover {
+    background: #ef4444;
+}
+
+
+/* Coverage */
+
+.coverage-btn {
+    background: #facc15;
+    color: #111827;
+    border: 1px solid #facc15;
+
+    box-shadow:
+        0 5px 15px rgba(250, 204, 21, 0.12);
+}
+
+.coverage-btn:hover {
+    background: #fde047;
+    border-color: #fde047;
+
+    box-shadow:
+        0 8px 20px rgba(250, 204, 21, 0.2);
+}
+
+
+/* Maintenance */
+
+.maintenance-btn {
+    background: linear-gradient(135deg,
+            #374151,
+            #1f2937);
+
+    color: #facc15;
+
+    border: 1px solid #4b5563;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.18);
+}
+
+.maintenance-btn:hover {
+    background: linear-gradient(135deg,
+            #4b5563,
+            #374151);
+
+    border-color: #facc15;
+
+    box-shadow:
+        0 8px 20px rgba(250, 204, 21, 0.15);
+}
+
+
+/* Missing Children */
+
+.incident-btn {
+    background: linear-gradient(135deg,
+            #7f1d1d,
+            #dc2626);
+
+    color: white;
+
+    border: 1px solid #ef4444;
+
+    box-shadow:
+        0 5px 15px rgba(220, 38, 38, 0.18);
+}
+
+.incident-btn:hover {
+    background: linear-gradient(135deg,
+            #991b1b,
+            #ef4444);
+
+    box-shadow:
+        0 8px 20px rgba(220, 38, 38, 0.28);
+}
+
+
+/* =========================
+   Controller Coverage
+========================= */
+
+.coverage-dashboard-card {
+    margin-bottom: 22px;
+    padding: 22px;
+
+    background: #111827;
+
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.coverage-dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+.coverage-dashboard-header>div:first-child {
+    flex: 1;
+}
+
+.coverage-dashboard-header h2 {
+    margin: 0;
+
+    color: #f8fafc;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.coverage-dashboard-header p {
+    margin: 6px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* Coverage Status */
+
+.coverage-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 100px;
+
+    padding: 7px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    border: 1px solid transparent;
+}
+
+.coverage-status.danger {
+    color: #fecaca;
+
+    background: rgba(239, 68, 68, 0.12);
+
+    border-color:
+        rgba(239, 68, 68, 0.25);
+}
+
+.coverage-status.warning {
+    color: #fed7aa;
+
+    background: rgba(249, 115, 22, 0.12);
+
+    border-color:
+        rgba(249, 115, 22, 0.25);
+}
+
+.coverage-status.stable {
+    color: #bbf7d0;
+
+    background: rgba(34, 197, 94, 0.12);
+
+    border-color:
+        rgba(34, 197, 94, 0.25);
+}
+
+
+/* Coverage Button */
+
+.coverage-dashboard-btn {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 10px 16px;
+
+    background: #facc15;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+.coverage-dashboard-btn:hover {
+    transform: translateY(-2px);
+
+    background: #fde047;
+
+    box-shadow:
+        0 6px 18px rgba(250, 204, 21, 0.2);
+}
+
+
+/* Coverage Stats */
+
+.coverage-dashboard-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.coverage-stat {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    padding: 14px;
+
+    background: #0f172a;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.coverage-stat-icon {
+    font-size: 22px;
+
+    flex-shrink: 0;
+}
+
+.coverage-stat strong {
+    display: block;
+
+    color: #f8fafc;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.coverage-stat small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+.coverage-stat.warning {
+    border-color:
+        rgba(249, 115, 22, 0.25);
+}
+
+.coverage-stat.danger {
+    border-color:
+        rgba(239, 68, 68, 0.25);
+}
+
+
+/* =========================
+   Main Statistics
+========================= */
+
+.dashboard {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.dashboard-card {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(250, 204, 21, 0.2);
+}
+
+.dashboard-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #334155;
+
+    font-size: 22px;
+}
+
+.dashboard-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-info span {
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    margin-bottom: 5px;
+}
+
+.dashboard-info strong {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   Occupancy Summary
+========================= */
+
+.occupancy-summary {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    width: fit-content;
+
+    padding: 12px 18px;
+
+    margin-bottom: 25px;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 13px;
+}
+
+.summary-item strong {
+    margin-right: 3px;
+}
+
+.summary-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+.summary-dot.green {
+    background: #22c55e;
+}
+
+.summary-dot.orange {
+    background: #f59e0b;
+}
+
+.summary-dot.red {
+    background: #ef4444;
+}
+
+
+/* =========================
+   Sectors
+========================= */
+
+.sectors-dashboard {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.sector-card {
+    padding: 18px;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.sector-card:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(250, 204, 21, 0.18);
+}
+
+.sector-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.sector-card-header h3 {
+    margin: 0;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.sector-card-header span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.sector-main {
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+}
+
+.sector-percentage {
+    min-width: 80px;
+
+    text-align: center;
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.sector-data {
+    display: flex;
+
+    gap: 25px;
+}
+
+.sector-data div {
+    display: flex;
+    flex-direction: column;
+}
+
+.sector-data span {
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    margin-bottom: 4px;
+}
+
+.sector-data strong {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.sector-progress {
+    height: 8px;
+
+    margin-top: 15px;
+
+    background: #334155;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.sector-progress-bar {
+    height: 100%;
+
+    border-radius: 10px;
+
+    transition:
+        width 0.5s ease,
+        background 0.3s ease;
+}
+
+
+/* =========================
+   Top 5 Sections
+========================= */
+
+.top-sections {
+    margin-top: 25px;
+}
+
+.top-sections-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.top-sections-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.top-sections-header span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.top-badge {
+    padding: 7px 12px;
+
+    background: #334155;
+
+    border-radius: 8px;
+
+    color: #38bdf8;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.top-section-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.top-section-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px 18px;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.top-section-card:hover {
+    transform: translateX(-3px);
+
+    background: #263449;
+
+    border-color:
+        rgba(56, 189, 248, 0.18);
+}
+
+.section-rank {
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #334155;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.top-section-info {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.top-section-info strong {
+    font-size: 16px;
+}
+
+.top-section-info span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.top-section-percentage {
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    gap: 6px;
+}
+
+.top-section-percentage strong {
+    font-size: 20px;
+}
+
+.top-section-progress {
+    width: 100%;
+    height: 7px;
+
+    background: #334155;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.top-section-progress-bar {
+    height: 100%;
+
+    border-radius: 10px;
+
+    transition:
+        width 0.5s ease,
+        background 0.3s ease;
+}
+
+
+/* =========================
+   Alerts
+========================= */
+
+.alerts-section {
+    margin-top: 25px;
+
+    padding: 0 30px 30px;
+
+    background: #0f172a;
+
+    color: white;
+
+    direction: rtl;
+}
+
+.alerts-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.alerts-header h2 {
+    margin: 0;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.alerts-header span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.alerts-count {
+    min-width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #334155;
+
+    border-radius: 50%;
+
+    font-weight: 800;
+}
+
+.alert-card {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 15px 18px;
+
+    margin-bottom: 10px;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-right: 5px solid;
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.alert-card:hover {
+    transform: translateX(-3px);
+
+    background: #263449;
+}
+
+.alert-card.medium {
+    border-right-color: #f59e0b;
+}
+
+.alert-card.high {
+    border-right-color: #ef4444;
+}
+
+.alert-card.critical {
+    border-right-color: #dc2626;
+
+    box-shadow:
+        0 0 15px rgba(220, 38, 38, 0.15);
+}
+
+.alert-icon {
+    min-width: 35px;
+
+    text-align: center;
+
+    font-size: 25px;
+}
+
+.alert-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.alert-info strong {
+    font-size: 16px;
+}
+
+.alert-info span {
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.alert-percentage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.alert-percentage strong {
+    font-size: 22px;
+}
+
+.alert-percentage span {
+    margin-top: 3px;
+
+    font-size: 11px;
+}
+
+.alert-card.medium .alert-percentage strong {
+    color: #f59e0b;
+}
+
+.alert-card.high .alert-percentage strong,
+.alert-card.critical .alert-percentage strong {
+    color: #ef4444;
+}
+
+.no-alerts {
+    padding: 20px;
+
+    text-align: center;
+
+    background: #1e293b;
+
+    border: 1px solid rgba(34, 197, 94, 0.12);
+
+    border-radius: 12px;
+
+    color: #22c55e;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   Loading
+========================= */
+
+.loading {
+    margin: 20px 0;
+
+    padding: 14px 18px;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    color: #94a3b8;
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1200px) {
+
+    .coverage-dashboard-stats {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .dashboard {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .sectors-dashboard {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .dashboard-page {
+        padding: 20px;
+    }
+
+    .alerts-section {
+        padding: 0 20px 25px;
+    }
+
+    .coverage-dashboard-header {
+        flex-wrap: wrap;
+    }
+
+    .coverage-dashboard-btn {
+        margin-right: auto;
+    }
+
+    .top-section-percentage {
+        width: 150px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-title h1 {
+        font-size: 26px;
+    }
+
+    .dashboard-actions {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-actions button {
+        width: 100%;
+    }
+
+    .coverage-dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .coverage-status {
+        width: fit-content;
+    }
+
+    .coverage-dashboard-btn {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .coverage-dashboard-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sectors-dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .occupancy-summary {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        justify-content: space-around;
+
+        flex-wrap: wrap;
+    }
+
+    .top-section-card {
+        align-items: flex-start;
+    }
+
+    .top-section-percentage {
+        width: 120px;
+    }
+
+    .alert-card {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .dashboard-page {
+        padding: 15px;
+    }
+
+    .alerts-section {
+        padding: 0 15px 20px;
+    }
+
+    .dashboard-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .coverage-dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .sector-main {
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+    .sector-data {
+        gap: 15px;
+    }
+
+    .sector-percentage {
+        min-width: 65px;
+
+        font-size: 26px;
+    }
+
+    .top-section-card {
+        flex-wrap: wrap;
+    }
+
+    .top-section-info {
+        flex: 1 1 calc(100% - 55px);
+    }
+
+    .top-section-percentage {
+        width: 100%;
+        align-items: stretch;
+    }
+
+    .alert-card {
+        flex-wrap: wrap;
+    }
+
+    .alert-percentage {
+        width: 100%;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    .occupancy-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sector-main {
+        align-items: flex-start;
+    }
+}
+
+
+
+
+/* ==========================================
+   Mobile Dashboard Improvements
+   Desktop styles remain unchanged
+========================================== */
+
+@media (max-width: 700px) {
+
+    .dashboard-page {
+        width: 100%;
+        min-height: 100vh;
+        padding: 16px 12px;
+        overflow-x: hidden;
+        box-sizing: border-box;
+    }
+
+    /* Page title */
+    .dashboard-title {
+        margin-bottom: 18px;
+    }
+
+    .dashboard-title h1 {
+        font-size: 25px;
+        line-height: 1.3;
+    }
+
+    .dashboard-title span {
+        font-size: 12px;
+    }
+
+    /* Navigation buttons */
+    .dashboard-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-bottom: 18px;
+    }
+
+    .dashboard-actions button {
+        min-width: 0;
+        min-height: 46px;
+        padding: 9px 5px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 10px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    /* Controller coverage */
+    .coverage-dashboard-card {
+        padding: 14px;
+        margin-bottom: 18px;
+        border-radius: 14px;
+    }
+
+    .coverage-dashboard-header {
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .coverage-dashboard-header h2 {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    .coverage-dashboard-header p {
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .coverage-dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .coverage-stat {
+        gap: 8px;
+        padding: 11px 8px;
+        border-radius: 10px;
+    }
+
+    .coverage-stat-icon {
+        font-size: 19px;
+    }
+
+    .coverage-stat strong {
+        font-size: 20px;
+    }
+
+    .coverage-stat small {
+        font-size: 10px;
+        white-space: normal;
+        line-height: 1.5;
+    }
+
+    .coverage-status {
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        font-size: 11px;
+    }
+
+    .coverage-dashboard-btn {
+        min-height: 42px;
+        white-space: normal;
+    }
+
+    /* Main statistics */
+    .dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 16px;
+    }
+
+    .dashboard-card {
+        min-width: 0;
+        gap: 9px;
+        padding: 12px 9px;
+        border-radius: 12px;
+    }
+
+    .dashboard-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+        border-radius: 9px;
+    }
+
+    .dashboard-info {
+        min-width: 0;
+    }
+
+    .dashboard-info span {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .dashboard-info strong {
+        font-size: 21px;
+        overflow-wrap: anywhere;
+    }
+
+    /* Occupancy levels */
+    .occupancy-summary {
+        width: 100%;
+        gap: 10px;
+        padding: 12px 8px;
+        margin-bottom: 18px;
+        justify-content: space-around;
+        box-sizing: border-box;
+    }
+
+    .summary-item {
+        gap: 5px;
+        font-size: 11px;
+    }
+
+    .summary-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Sector cards */
+    .sectors-dashboard {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .sector-card {
+        min-width: 0;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .sector-card-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .sector-card-header h3 {
+        font-size: 16px;
+    }
+
+    .sector-card-header span {
+        font-size: 11px;
+    }
+
+    .sector-main {
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .sector-percentage {
+        min-width: 65px;
+        font-size: 27px;
+    }
+
+    .sector-data {
+        flex: 1;
+        justify-content: space-around;
+        gap: 12px;
+    }
+
+    .sector-data span {
+        font-size: 11px;
+    }
+
+    .sector-data strong {
+        font-size: 18px;
+    }
+
+    .sector-progress {
+        height: 7px;
+        margin-top: 13px;
+    }
+
+    /* Top five sections */
+    .top-sections {
+        margin-top: 20px;
+    }
+
+    .top-sections-header {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .top-sections-header h2 {
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    .top-sections-header span {
+        display: block;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .top-badge {
+        flex-shrink: 0;
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+
+    .top-section-card {
+        min-width: 0;
+        gap: 10px;
+        padding: 12px 10px;
+        border-radius: 10px;
+    }
+
+    .section-rank {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .top-section-info {
+        flex: 1;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .top-section-info strong {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .top-section-info span {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .top-section-percentage {
+        width: 85px;
+        flex-shrink: 0;
+        gap: 5px;
+    }
+
+    .top-section-percentage strong {
+        font-size: 17px;
+    }
+
+    /* Alerts */
+    .alerts-section {
+        margin-top: 20px;
+        padding: 0 0 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .alerts-header {
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .alerts-header h2 {
+        font-size: 19px;
+    }
+
+    .alerts-header span {
+        display: block;
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .alerts-count {
+        min-width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+    }
+
+    .alert-card {
+        min-width: 0;
+        gap: 9px;
+        padding: 12px 10px;
+        border-radius: 10px;
+    }
+
+    .alert-icon {
+        min-width: 27px;
+        font-size: 21px;
+    }
+
+    .alert-info {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .alert-info strong {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .alert-info span {
+        font-size: 11px;
+    }
+
+    .alert-percentage {
+        flex-shrink: 0;
+        max-width: 100px;
+    }
+
+    .alert-percentage strong {
+        font-size: 18px;
+    }
+
+    .alert-percentage span {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .no-alerts {
+        padding: 15px 10px;
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .loading {
+        padding: 12px 8px;
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    /* Disable hover movement on touch screens */
+    .dashboard-card:hover,
+    .sector-card:hover,
+    .top-section-card:hover,
+    .alert-card:hover,
+    .dashboard-actions button:hover {
+        transform: none;
+    }
+}
+
+
+/* Very narrow phones */
+@media (max-width: 380px) {
+
+    .dashboard-page {
+        padding: 12px 9px;
+    }
+
+    .dashboard-card {
+        gap: 7px;
+        padding: 10px 7px;
+    }
+
+    .dashboard-icon {
+        width: 31px;
+        height: 31px;
+        font-size: 17px;
+    }
+
+    .dashboard-info span {
+        font-size: 10px;
+    }
+
+    .dashboard-info strong {
+        font-size: 19px;
+    }
+
+    .coverage-stat {
+        padding: 10px 6px;
+    }
+
+    .sector-main {
+        gap: 8px;
+    }
+
+    .sector-percentage {
+        min-width: 58px;
+        font-size: 24px;
+    }
+
+    .sector-data {
+        gap: 8px;
+    }
+
+    .top-section-card {
+        flex-wrap: wrap;
+    }
+
+    .top-section-percentage {
+        width: 100%;
+        flex-shrink: 1;
+        align-items: stretch;
+        margin-top: 4px;
+    }
+
+    .alert-card {
+        flex-wrap: wrap;
+    }
+
+    .alert-percentage {
+        width: 100%;
+        max-width: none;
+        align-items: flex-start;
+        margin-right: 36px;
+    }
+}

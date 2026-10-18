@@ -1,0 +1,474 @@
+<div class="dashboard-page">
+
+    <div class="dashboard-title">
+        <h1>Dashboard</h1>
+        <span>Live Club Occupancy</span>
+    </div>
+
+    <div class="dashboard-actions">
+
+        <button class="map-btn" (click)="goToMap()">
+            🗺️ الخريطة
+        </button>
+
+        <button class="history-btn" (click)="goToHistory()">
+            📈 التحليل التاريخي
+        </button>
+
+        <button class="alert-btn" (click)="goToAlerts()">
+            🚨 مركز التنبيهات
+        </button>
+
+        <button class="coverage-btn" (click)="goToCoverage()">
+            👮‍♂️ المراقبين
+        </button>
+
+        <button class="maintenance-btn" (click)="goToMaintenance()">
+            🔧 الصيانة
+        </button>
+        <!-- 
+        <button class="incident-btn" (click)="goToIncidents()">
+            🚨 اطفال مفقوده
+        </button> -->
+
+    </div>
+
+    <!-- Controller Coverage Summary -->
+
+    <div class="coverage-dashboard-card" *ngIf="coverageSummary">
+
+        <div class="coverage-dashboard-header">
+
+            <div>
+                <h2>👮‍♂️ Controller Coverage</h2>
+
+                <p>
+                    حالة تغطية المناطق والـ Controllers
+                </p>
+            </div>
+
+            <div class="coverage-status" [ngClass]="getCoverageStatusClass()">
+
+                {{ getCoverageStatus() }}
+
+            </div>
+
+            <button class="coverage-dashboard-btn" (click)="goToCoverage()">
+
+                إدارة الـ Controllers
+                →
+            </button>
+
+        </div>
+
+
+        <div class="coverage-dashboard-stats">
+
+            <div class="coverage-stat">
+
+                <span class="coverage-stat-icon">
+                    👮‍♂️
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.totalControllers }}
+                    </strong>
+
+                    <small>
+                        إجمالي Controllers
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="coverage-stat">
+
+                <span class="coverage-stat-icon">
+                    🟢
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.availableControllers }}
+                    </strong>
+
+                    <small>
+                        متاح
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="coverage-stat">
+
+                <span class="coverage-stat-icon">
+                    📍
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.assignedControllers }}
+                    </strong>
+
+                    <small>
+                        موزع
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="coverage-stat">
+
+                <span class="coverage-stat-icon">
+                    🟢
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.coveredSections }}
+                    </strong>
+
+                    <small>
+                        مناطق مغطاة
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="coverage-stat warning">
+
+                <span class="coverage-stat-icon">
+                    🟠
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.sectionsNeedingSupport }}
+                    </strong>
+
+                    <small>
+                        تحتاج دعم
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="coverage-stat danger">
+
+                <span class="coverage-stat-icon">
+                    🔴
+                </span>
+
+                <div>
+                    <strong>
+                        {{ coverageSummary.sectionsWithoutCoverage }}
+                    </strong>
+
+                    <small>
+                        بدون تغطية
+                    </small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Main Statistics -->
+    <div class="dashboard">
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">👥</div>
+
+            <div class="dashboard-info">
+                <span>الحضور الحالي</span>
+                <strong>{{ getTotalAttendance() }}</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">🏢</div>
+
+            <div class="dashboard-info">
+                <span>إجمالي السعة</span>
+                <strong>{{ getTotalCapacity() }}</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">📊</div>
+
+            <div class="dashboard-info">
+                <span>نسبة الإشغال</span>
+                <strong>{{ getOverallPercentage() }}%</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">📍</div>
+
+            <div class="dashboard-info">
+                <span>المناطق النشطة</span>
+                <strong>{{ getActiveSections() }}</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Occupancy Summary -->
+    <div class="occupancy-summary">
+
+        <div class="summary-item">
+            <span class="summary-dot green"></span>
+            <span>منخفض</span>
+            <strong>{{ getLowSections() }}</strong>
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-dot orange"></span>
+            <span>متوسط</span>
+            <strong>{{ getMediumSections() }}</strong>
+        </div>
+
+        <div class="summary-item">
+            <span class="summary-dot red"></span>
+            <span>مرتفع</span>
+            <strong>{{ getHighSections() }}</strong>
+        </div>
+
+    </div>
+
+
+    <!-- Sectors -->
+    <div class="sectors-dashboard">
+
+        <div class="sector-card" *ngFor="let sector of sectors">
+
+            <div class="sector-card-header">
+
+                <h3>
+                    {{ sector.name }}
+                </h3>
+
+                <span>
+                    {{ getSectorStats(sector.key).sectionsCount }}
+                    مناطق
+                </span>
+
+            </div>
+
+
+            <div class="sector-main">
+
+                <div class="sector-percentage">
+                    {{ getSectorStats(sector.key).percentage }}%
+                </div>
+
+                <div class="sector-data">
+
+                    <div>
+                        <span>الحضور</span>
+
+                        <strong>
+                            {{ getSectorStats(sector.key).attendance }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>السعة</span>
+
+                        <strong>
+                            {{ getSectorStats(sector.key).capacity }}
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="sector-progress">
+
+                <div class="sector-progress-bar" [style.width.%]="
+            getSectorStats(sector.key).percentage
+          " [style.background]="
+            getSectorStats(sector.key).percentage < 50
+              ? '#22c55e'
+              : getSectorStats(sector.key).percentage < 80
+                ? '#f59e0b'
+                : '#ef4444'
+          ">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Top 5 Sections -->
+    <div class="top-sections">
+
+        <div class="top-sections-header">
+
+            <div>
+                <h2>أعلى 5 مناطق إشغالًا</h2>
+                <span>المناطق الأكثر ازدحامًا حاليًا</span>
+            </div>
+
+            <div class="top-badge">
+                TOP 5
+            </div>
+
+        </div>
+
+
+        <div class="top-section-card" *ngFor="
+    let section of getTop5Sections();
+    let i = index
+  " (click)="goToSection(section.id)">
+
+            <!-- Rank -->
+            <div class="section-rank">
+                {{ i + 1 }}
+            </div>
+
+
+            <!-- Section Info -->
+            <div class="top-section-info">
+
+                <strong>
+                    {{ section.sectionName }}
+                </strong>
+
+                <span>
+                    {{ section.currentAttendance }}
+                    /
+                    {{ section.capacity }}
+                    شخص
+                </span>
+
+            </div>
+
+
+            <!-- Percentage -->
+            <div class="top-section-percentage">
+
+                <strong>
+                    {{ getSectionPercentage(section) }}%
+                </strong>
+
+                <div class="top-section-progress">
+
+                    <div class="top-section-progress-bar" [style.width.%]="
+              getSectionPercentage(section)
+            " [style.background]="
+              getSectionPercentage(section) >= 80
+                ? '#ef4444'
+                : getSectionPercentage(section) >= 50
+                  ? '#f59e0b'
+                  : '#22c55e'
+            ">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Alerts Section -->
+    <div class="alerts-section">
+
+        <div class="alerts-header">
+
+            <div>
+                <h2>التنبيهات</h2>
+                <span>المناطق التي تحتاج إلى متابعة</span>
+            </div>
+
+            <div class="alerts-count">
+                {{ getAlertSections().length }}
+            </div>
+
+        </div>
+
+
+        <div class="no-alerts" *ngIf="getAlertSections().length === 0">
+
+            🟢 لا توجد مناطق تحتاج إلى متابعة حالياً
+
+        </div>
+
+
+        <div class="alert-card" *ngFor="let section of getAlertSections()"
+            [class.medium]="getAlertLevel(section) === 'medium'" [class.high]="getAlertLevel(section) === 'high'"
+            [class.critical]="getAlertLevel(section) === 'critical'">
+
+            <div class="alert-icon">
+
+                <span *ngIf="getAlertLevel(section) === 'medium'">
+                    🟠
+                </span>
+
+                <span *ngIf="getAlertLevel(section) === 'high'">
+                    🔴
+                </span>
+
+                <span *ngIf="getAlertLevel(section) === 'critical'">
+                    🚨
+                </span>
+
+            </div>
+
+
+            <div class="alert-info">
+
+                <strong>
+                    {{ section.sectionName }}
+                </strong>
+
+                <span>
+                    {{ section.currentAttendance }}
+                    /
+                    {{ section.capacity }}
+                    شخص
+                </span>
+
+            </div>
+
+
+            <div class="alert-percentage">
+
+                <strong>
+                    {{ getSectionPercentage(section) }}%
+                </strong>
+
+                <span>
+                    {{ getAlertText(section) }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="loading" *ngIf="loading">
+        جاري تحديث بيانات الـ Dashboard...
+    </div>
+
+</div>

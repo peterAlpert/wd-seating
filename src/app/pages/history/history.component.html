@@ -1,0 +1,389 @@
+<div class="history-page">
+
+    <!-- Header -->
+    <div class="history-header">
+
+        <div>
+            <h1>تحليل الإشغال</h1>
+
+            <span>
+                Attendance History & Occupancy Analysis
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- Filters -->
+    <div class="filters-card">
+
+        <div class="filter-item">
+
+            <label>
+                المنطقة
+            </label>
+
+            <select [(ngModel)]="selectedSectionId" (change)="onSectionChange()" [disabled]="loadingSections">
+
+                <option *ngFor="let section of sections" [ngValue]="section.id">
+
+                    {{ section.sectorName }}
+                    -
+                    {{ section.sectionName }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="filter-item">
+
+            <label>
+                التاريخ
+            </label>
+
+            <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange()">
+
+        </div>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div class="loading" *ngIf="loadingHistory">
+
+        جاري تحميل بيانات الإشغال...
+
+    </div>
+
+
+    <ng-container *ngIf="!loadingHistory">
+
+
+        <!-- Selected Section -->
+        <div class="selected-section" *ngIf="getSelectedSection() as section">
+
+            <div>
+
+                <span>
+                    المنطقة الحالية
+                </span>
+
+                <strong>
+                    {{ section.sectionName }}
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    القطاع
+                </span>
+
+                <strong>
+                    {{ section.sectorName }}
+                </strong>
+
+            </div>
+
+            <div>
+
+                <span>
+                    السعة
+                </span>
+
+                <strong>
+                    {{ section.capacity }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <span>
+                        أعلى حضور
+                    </span>
+
+                    <strong>
+                        {{ getHighestAttendance() }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div>
+
+                    <span>
+                        متوسط الحضور
+                    </span>
+
+                    <strong>
+                        {{ getAverageAttendance() }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <span>
+                        أعلى إشغال
+                    </span>
+
+                    <strong>
+                        {{ getPeakPercentage() }}%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🕐
+                </div>
+
+                <div>
+
+                    <span>
+                        وقت الذروة
+                    </span>
+
+                    <strong>
+                        {{ getPeakTime() }}
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Timeline -->
+        <div class="timeline-card">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        خط الإشغال الزمني
+                    </h2>
+
+                    <span>
+                        {{ history.length }}
+                        قراءة مسجلة في
+                        {{ selectedDate }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="empty-history" *ngIf="history.length === 0">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <strong>
+                    لا توجد بيانات تاريخية
+                </strong>
+
+                <span>
+                    لم يتم تسجيل أي تغيير في الحضور
+                    لهذه المنطقة في هذا اليوم.
+                </span>
+
+            </div>
+
+
+            <div class="chart" *ngIf="history.length > 0">
+
+                <div class="chart-item" *ngFor="
+                        let item of history;
+                        let i = index
+                    ">
+
+                    <div class="bar-wrapper">
+
+                        <div class="bar-value">
+
+                            {{ item.attendance }}
+
+                        </div>
+
+                        <div class="bar" [class.low]="
+                                getHistoryLevel(item) === 'low'
+                            " [class.medium]="
+                                getHistoryLevel(item) === 'medium'
+                            " [class.critical]="
+                                getHistoryLevel(item) === 'critical'
+                            " [style.height.%]="
+                                getBarHeight(item)
+                            ">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="chart-time">
+
+                        {{ formatTime(item.recordedAt) }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Legend -->
+            <div class="legend" *ngIf="history.length > 0">
+
+                <div>
+                    <span class="legend-dot low"></span>
+                    أقل من 50%
+                </div>
+
+                <div>
+                    <span class="legend-dot medium"></span>
+                    من 50% إلى 79%
+                </div>
+
+                <div>
+                    <span class="legend-dot critical"></span>
+                    80% فأكثر
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Detailed History -->
+        <div class="history-list-card" *ngIf="history.length > 0">
+
+            <div class="section-title">
+
+                <div>
+
+                    <h2>
+                        سجل التغييرات
+                    </h2>
+
+                    <span>
+                        أحدث القراءات المسجلة
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="history-row" *ngFor="
+                    let item of history;
+                    let i = index
+                ">
+
+                <div class="history-number">
+
+                    {{ i + 1 }}
+
+                </div>
+
+
+                <div class="history-time">
+
+                    <strong>
+                        {{ formatTime(item.recordedAt) }}
+                    </strong>
+
+                    <span>
+                        {{ formatDate(item.recordedAt) }}
+                    </span>
+
+                </div>
+
+
+                <div class="history-attendance">
+
+                    <strong>
+                        {{ item.attendance }}
+                    </strong>
+
+                    <span>
+                        شخص
+                    </span>
+
+                </div>
+
+
+                <div class="history-percentage">
+
+                    <strong>
+                        {{ getHistoryPercentage(item) }}%
+                    </strong>
+
+                    <div class="mini-progress">
+
+                        <div [class.low]="
+                                getHistoryLevel(item) === 'low'
+                            " [class.medium]="
+                                getHistoryLevel(item) === 'medium'
+                            " [class.critical]="
+                                getHistoryLevel(item) === 'critical'
+                            " [style.width.%]="
+                                getHistoryPercentage(item)
+                            ">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </ng-container>
+
+</div>

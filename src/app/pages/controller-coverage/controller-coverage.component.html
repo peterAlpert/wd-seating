@@ -1,0 +1,700 @@
+<div class="coverage-page" dir="rtl">
+
+    <!-- Header -->
+    <div class="page-header">
+
+        <div>
+            <h1>👮‍♂️ تغطية الـ Controllers</h1>
+
+            <p>
+                متابعة توزيع الـ Controllers وحالة تغطية مناطق النادي
+            </p>
+        </div>
+
+        <div class="live-status">
+            <span></span>
+            مباشر
+        </div>
+
+    </div>
+
+
+    <!-- Summary -->
+    <div class="summary-cards" *ngIf="coverage">
+
+        <!-- Total Controllers -->
+        <div class="summary-card total">
+
+            <div class="summary-icon">
+                👮‍♂️
+            </div>
+
+            <div>
+                <small>
+                    إجمالي الـ Controllers
+                </small>
+
+                <strong>
+                    {{ coverage.summary.totalControllers }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Assigned -->
+        <div class="summary-card assigned">
+
+            <div class="summary-icon">
+                📍
+            </div>
+
+            <div>
+                <small>
+                    موزعين
+                </small>
+
+                <strong>
+                    {{ coverage.summary.assignedControllers }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Available -->
+        <div class="summary-card available">
+
+            <div class="summary-icon">
+                🟢
+            </div>
+
+            <div>
+                <small>
+                    متاحين
+                </small>
+
+                <strong>
+                    {{ coverage.summary.availableControllers }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Covered -->
+        <div class="summary-card covered">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div>
+                <small>
+                    مناطق مغطاة
+                </small>
+
+                <strong>
+                    {{ coverage.summary.coveredSections }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Support -->
+        <div class="summary-card support">
+
+            <div class="summary-icon">
+                🟠
+            </div>
+
+            <div>
+                <small>
+                    تحتاج دعم
+                </small>
+
+                <strong>
+                    {{ coverage.summary.sectionsNeedingSupport }}
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- No Coverage -->
+        <div class="summary-card no-coverage">
+
+            <div class="summary-icon">
+                🔴
+            </div>
+
+            <div>
+                <small>
+                    بدون تغطية
+                </small>
+
+                <strong>
+                    {{ coverage.summary.sectionsWithoutCoverage }}
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Controller Management -->
+    <div class="management-panel">
+
+        <div class="management-header">
+
+            <div>
+                <h2>👮‍♂️ إدارة الـ Controllers</h2>
+
+                <p>
+                    إضافة وتوزيع ومتابعة Controllers النادي
+                </p>
+            </div>
+
+            <button class="add-controller-btn" (click)="addController()">
+
+                ➕ إضافة Controller
+
+            </button>
+
+        </div>
+
+        <!-- Smart Controller Counters -->
+
+        <div class="controller-counters">
+
+            <div class="controller-counter total-counter">
+
+                <span class="counter-icon">👮‍♂️</span>
+
+                <div>
+                    <small>إجمالي</small>
+                    <strong>
+                        {{ totalControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="controller-counter available-counter">
+
+                <span class="counter-icon">🟢</span>
+
+                <div>
+                    <small>متاح</small>
+                    <strong>
+                        {{ availableControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="controller-counter assigned-counter">
+
+                <span class="counter-icon">📍</span>
+
+                <div>
+                    <small>موزع</small>
+                    <strong>
+                        {{ assignedControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="controller-counter unassigned-counter">
+
+                <span class="counter-icon">⚪</span>
+
+                <div>
+                    <small>غير موزع</small>
+                    <strong>
+                        {{ unassignedControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="controller-counter break-counter">
+
+                <span class="counter-icon">☕</span>
+
+                <div>
+                    <small>راحة</small>
+                    <strong>
+                        {{ breakControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="controller-counter off-counter">
+
+                <span class="counter-icon">🔴</span>
+
+                <div>
+                    <small>خارج الخدمة</small>
+                    <strong>
+                        {{ offControllersCount }}
+                    </strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Controller Filters -->
+
+        <div class="controller-filters">
+
+            <div class="filter-group">
+
+                <span class="filter-label">
+                    القطاع
+                </span>
+
+                <button [class.active]="selectedControllerSector === 'all'" (click)="setControllerSectorFilter('all')">
+
+                    الكل
+
+                </button>
+
+                <button [class.active]="selectedControllerSector === 'Lake'"
+                    (click)="setControllerSectorFilter('Lake')">
+
+                    🌊 البحيرة
+
+                </button>
+
+                <button [class.active]="selectedControllerSector === 'Garden'"
+                    (click)="setControllerSectorFilter('Garden')">
+
+                    🌳 الجاردن
+
+                </button>
+
+                <button [class.active]="selectedControllerSector === 'Fields'"
+                    (click)="setControllerSectorFilter('Fields')">
+
+                    ⚽ الملاعب
+
+                </button>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <span class="filter-label">
+                    الحالة
+                </span>
+
+                <button [class.active]="selectedControllerStatus === 'all'" (click)="setControllerStatusFilter('all')">
+
+                    الكل
+
+                </button>
+
+                <button [class.active]="selectedControllerStatus === 'Available'"
+                    (click)="setControllerStatusFilter('Available')">
+
+                    🟢 متاح
+
+                </button>
+
+                <button [class.active]="selectedControllerStatus === 'Busy'"
+                    (click)="setControllerStatusFilter('Busy')">
+
+                    🟠 مشغول
+
+                </button>
+
+                <button [class.active]="selectedControllerStatus === 'Break'"
+                    (click)="setControllerStatusFilter('Break')">
+
+                    ☕ راحة
+
+                </button>
+
+                <button [class.active]="selectedControllerStatus === 'Off'" (click)="setControllerStatusFilter('Off')">
+
+                    🔴 خارج الخدمة
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Filter Result -->
+
+        <div class="filter-result" *ngIf="
+        selectedControllerSector !== 'all' ||
+        selectedControllerStatus !== 'all'
+    ">
+
+            عرض
+            <strong>
+                {{ filteredControllers.length }}
+            </strong>
+            Controller
+
+            من أصل
+
+            <strong>
+                {{ controllers.length }}
+            </strong>
+
+        </div>
+
+
+        <!-- Loading -->
+        <div class="management-loading" *ngIf="managementLoading">
+
+            جاري تحميل بيانات الـ Controllers...
+
+        </div>
+
+
+        <!-- Controllers -->
+        <div class="controllers-management" *ngIf="!managementLoading">
+
+            <div class="management-card" *ngFor="let controller of filteredControllers">
+
+                <!-- Controller Info -->
+                <div class="management-controller-info">
+
+                    <div class="management-controller-icon">
+                        👮‍♂️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            {{ controller.name }}
+                        </strong>
+
+                        <small>
+                            {{ controller.code }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Sector -->
+                <div class="management-sector">
+
+                    <span>القطاع</span>
+
+                    <strong>
+                        {{ getSectorName(controller.sector) }}
+                    </strong>
+
+                </div>
+
+
+                <!-- Current Location -->
+                <div class="management-location">
+
+                    <span>المكان الحالي</span>
+
+                    <strong *ngIf="controller.currentSectionId">
+
+                        {{ controller.sectionName || 'منطقة غير معروفة' }}
+
+                    </strong>
+
+                    <strong class="not-assigned" *ngIf="!controller.currentSectionId">
+
+                        غير موزع
+
+                    </strong>
+
+                </div>
+
+
+                <!-- Status -->
+                <div class="management-status">
+
+                    <span class="status-dot" [class.available]="controller.isAvailable"
+                        [class.busy]="!controller.isAvailable">
+                    </span>
+
+                    <span>
+                        {{ controller.isAvailable ? 'متاح' : 'مشغول' }}
+                    </span>
+
+                </div>
+
+
+                <!-- Actions -->
+                <div class="management-actions">
+
+                    <button class="edit-btn" (click)="editController(controller)">
+
+                        ✏️
+                        تعديل
+
+                    </button>
+
+                    <button class="status-btn" (click)="changeControllerStatus(controller)">
+
+                        🔄
+                        الحالة
+
+                    </button>
+
+                    <button class="assign-btn" (click)="assignController(controller)">
+
+                        📍
+                        توزيع
+
+                    </button>
+
+                    <button class="unassign-btn" *ngIf="controller.currentSectionId"
+                        (click)="unassignController(controller)">
+
+                        ↩️
+                        إلغاء التوزيع
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Empty -->
+            <div class="management-empty" *ngIf="filteredControllers.length === 0">
+
+                <div>👮‍♂️</div>
+
+                <strong>
+                    لا يوجد Controllers
+                </strong>
+
+                <span>
+                    أضف أول Controller من زر الإضافة
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Filters -->
+    <div class="filters">
+
+        <button [class.active]="selectedFilter === 'all'" (click)="setFilter('all')">
+
+            الكل
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'Covered'" (click)="setFilter('Covered')">
+
+            🟢 مغطاة
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'NeedsSupport'" (click)="setFilter('NeedsSupport')">
+
+            🟠 تحتاج دعم
+
+        </button>
+
+
+        <button [class.active]="selectedFilter === 'NoCoverage'" (click)="setFilter('NoCoverage')">
+
+            🔴 بدون تغطية
+
+        </button>
+
+    </div>
+
+
+    <!-- Sections -->
+    <div class="sections-list" *ngIf="coverage">
+
+
+        <div class="section-card" *ngFor="let section of filteredSections" [class.covered]="
+                section.coverageStatus === 'Covered'
+            " [class.support]="
+                section.coverageStatus === 'NeedsSupport'
+            " [class.no-coverage]="
+                section.coverageStatus === 'NoCoverage'
+            ">
+
+
+            <!-- Status -->
+            <div class="section-status">
+
+                <span class="status-icon">
+                    {{ getCoverageIcon(section.coverageStatus) }}
+                </span>
+
+                <span>
+                    {{ getCoverageText(section.coverageStatus) }}
+                </span>
+
+            </div>
+
+
+            <!-- Section Info -->
+            <div class="section-info">
+
+                <small>
+                    {{ getSectorName(section.sectorName) }}
+                </small>
+
+                <h2>
+                    {{ getSectionName(section.sectionName) }}
+                </h2>
+
+
+                <div class="attendance">
+
+                    <span>
+                        👥
+                        {{ section.attendance }}
+                        /
+                        {{ section.capacity }}
+                    </span>
+
+                    <strong [class]="
+                            getPercentageClass(
+                                section.percentage
+                            )
+                        ">
+
+                        {{ section.percentage }}%
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Controllers -->
+            <div class="controllers">
+
+                <div class="controllers-title">
+
+                    <span>
+                        👮‍♂️ Controllers
+                    </span>
+
+                    <strong>
+                        {{ section.controllerCount }}
+                    </strong>
+
+                </div>
+
+
+                <div class="controller-list" *ngIf="
+                        section.controllers.length > 0
+                    ">
+
+                    <div class="controller" *ngFor="
+                            let controller
+                            of section.controllers
+                        ">
+
+                        <span class="controller-icon">
+                            👮‍♂️
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                {{ controller.name }}
+                            </strong>
+
+                            <small>
+                                {{ controller.code }}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="no-controller" *ngIf="
+                        section.controllers.length === 0
+                    ">
+
+                    لا يوجد Controller في المنطقة
+
+                </div>
+
+            </div>
+
+
+            <!-- Support Warning -->
+            <div class="support-warning" *ngIf="section.needsSupport">
+
+                <div class="support-message">
+
+                    <span>
+                        ⚠️ المنطقة مزدحمة وتحتاج Controller إضافي
+                    </span>
+
+                    <button class="smart-assign-btn" (click)="smartAssignController(section)">
+
+                        📍 توزيع الآن
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Empty -->
+        <div class="empty-state" *ngIf="filteredSections.length === 0">
+
+            <div>
+                🟢
+            </div>
+
+            <strong>
+                لا توجد مناطق
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div class="loading" *ngIf="loading">
+
+        جاري تحديث التغطية...
+
+    </div>
+
+</div>
