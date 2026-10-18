@@ -168,7 +168,8 @@ export class SectionsService {
 
   private http = inject(HttpClient);
 
-  apiUrl = 'https://localhost:7029/api/Sections';
+  // apiUrl = 'https://localhost:7029/api/Sections';
+  apiUrl = 'https://wd-capcity.runasp.net/api/Sections';
 
   // جلب كل المناطق
   getAll() {
