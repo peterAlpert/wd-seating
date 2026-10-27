@@ -172,7 +172,7 @@ export class SectionsService {
 
   apiUrl = environment.apiUrl + '/Sections';
   // ==========================================
-  // Sections
+  // Sections / Attendance
   // ==========================================
 
   // جلب كل المناطق
