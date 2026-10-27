@@ -42,7 +42,6 @@ export class MapViewComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   mapFitScale = 1;
 
-  isMobilePortrait = false;
 
 
 
@@ -1179,6 +1178,8 @@ export class MapViewComponent implements OnInit {
 
 
 
+
+
   private updateMapFitScale(): void {
     const container = document.querySelector(
       '.map-container'
@@ -1232,15 +1233,13 @@ export class MapViewComponent implements OnInit {
 
 
 
+
   ngAfterViewInit(): void {
-    this.updateMobileLayout();
     this.updateMapFitScale();
     this.cdr.detectChanges();
   }
-
   @HostListener('window:resize')
   onWindowResize(): void {
-    this.updateMobileLayout();
     this.updateMapFitScale();
   }
 
@@ -1302,45 +1301,6 @@ export class MapViewComponent implements OnInit {
       this.isPinching = false;
       this.initialPinchDistance = 0;
     }
-  }
-
-
-  // ==========================================
-  // Mobile Layout
-  // ==========================================  
-  private updateMobileLayout(): void {
-    this.isMobilePortrait =
-      window.innerWidth <= 700 &&
-      window.innerHeight > window.innerWidth;
-  }
-
-  get mobileMapAreas(): MapArea[] {
-    return [...this.mapAreas].sort((a, b) => {
-      if (a.y !== b.y) {
-        return a.y - b.y;
-      }
-
-      return a.x - b.x;
-    });
-  }
-
-  selectMobileArea(area: MapArea): void {
-    const section = this.getSection(area.sectionName);
-
-    if (!section) {
-      this.selectedSection = {
-        id: 0,
-        sectorName: '',
-        sectionName: area.sectionName,
-        capacity: 0,
-        currentAttendance: 0,
-        noData: true
-      };
-
-      return;
-    }
-
-    this.selectedSection = section;
   }
 
 }
