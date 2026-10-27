@@ -47,11 +47,36 @@
     </button>
 
 
+
+    <!-- Mobile portrait layout -->
+    <div class="mobile-map-list" *ngIf="isMobilePortrait">
+        <button type="button" class="mobile-map-area" *ngFor="let area of mobileMapAreas"
+            [attr.data-section]="area.sectionName" (click)="selectMobileArea(area)">
+            <span class="mobile-area-name">
+                {{ area.name || area.sectionName }}
+            </span>
+
+            <span class="mobile-area-percent">
+                {{ getPercentage(area) }}%
+            </span>
+
+            <span class="mobile-area-count">
+                <ng-container *ngIf="getSection(area.sectionName) as section">
+                    {{ section.currentAttendance }} / {{ section.capacity }}
+                </ng-container>
+                <ng-container *ngIf="!getSection(area.sectionName)">
+                    لا توجد بيانات
+                </ng-container>
+            </span>
+        </button>
+    </div>
+
+
     <!-- ========================= -->
     <!-- MAP -->
     <!-- ========================= -->
 
-    <div class="map-wrapper" [style.transform]="
+    <div class="map-wrapper" *ngIf="!isMobilePortrait" [style.transform]="
     'translate(' +
     offsetX +
     'px, ' +
