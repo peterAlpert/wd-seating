@@ -171,6 +171,9 @@ export class SectionsService {
 
 
   apiUrl = environment.apiUrl + '/Sections';
+  // ==========================================
+  // Sections
+  // ==========================================
 
   // جلب كل المناطق
   getAll() {
