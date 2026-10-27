@@ -556,14 +556,12 @@ export class MapViewComponent implements OnInit {
 
   }
 
+
   resetZoom(): void {
-
     this.zoomLevel = 1;
-
-    this.offsetX = 0;
-    this.offsetY = 0;
-
+    this.updateMapFitScale();
   }
+
 
   startDrag(event: PointerEvent): void {
 
@@ -1180,47 +1178,58 @@ export class MapViewComponent implements OnInit {
 
 
 
-  private updateMapFitScale(): void {
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
 
-    // Keep desktop unchanged
-    if (screenWidth > 700 && screenHeight > 500) {
-      this.mapFitScale = 1;
-      return;
-    }
+  private updateMapFitScale(): void {
+    const container = document.querySelector(
+      '.map-container'
+    ) as HTMLElement | null;
+
+    // نستخدم أبعاد حاوية الخريطة الفعلية
+    const screenWidth =
+      container?.clientWidth || window.innerWidth;
+
+    const screenHeight =
+      container?.clientHeight || window.innerHeight;
 
     const mapWidth = 1100;
     const mapHeight = 700;
-    const padding = 24;
+    const padding = 16;
 
-    const isMobileLandscape =
-      screenWidth > screenHeight && screenHeight <= 500;
-
-
-    if (isMobileLandscape) {
-      // Make the map larger on mobile landscape
-      const fitScale = (screenWidth - padding) / mapWidth;
-
-      this.mapFitScale = Math.min(
-        fitScale * 1.2,
-        1
-      );
-    }
-    else {
-      // Preserve existing fit behavior in portrait
-      this.mapFitScale = Math.min(
-        (screenWidth - 16) / mapWidth,
-        (screenHeight - 16) / mapHeight
-      );
+    // الكمبيوتر يفضل بنفس الحجم والتنسيق الحالي
+    if (screenWidth > 700 && screenHeight > 500) {
+      this.mapFitScale = 1;
+      this.offsetX = 0;
+      this.offsetY = 0;
+      return;
     }
 
+    // المساحة المتاحة بعد ترك هامش بسيط
+    const availableWidth = Math.max(
+      1,
+      screenWidth - padding
+    );
+
+    const availableHeight = Math.max(
+      1,
+      screenHeight - padding
+    );
+
+    // تصغير متناسب يحافظ على شكل الخريطة بالكامل
+    const fitScale = Math.min(
+      availableWidth / mapWidth,
+      availableHeight / mapHeight
+    );
+
+    this.mapFitScale = Math.min(fitScale, 1);
+
+    // توسيط الخريطة داخل الشاشة
     this.offsetX =
       (screenWidth - mapWidth * this.mapFitScale) / 2;
 
     this.offsetY =
       (screenHeight - mapHeight * this.mapFitScale) / 2;
   }
+
 
 
 
