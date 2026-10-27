@@ -588,23 +588,25 @@ export class MapViewComponent implements OnInit {
     this.lastPointerY = event.clientY;
   }
 
-  drag(event: PointerEvent): void {
 
+  drag(event: PointerEvent): void {
     if (!this.isDragging) {
       return;
     }
 
-    const deltaX =
-      event.clientX - this.lastPointerX;
+    const rawDeltaX = event.clientX - this.lastPointerX;
+    const rawDeltaY = event.clientY - this.lastPointerY;
 
-    const deltaY =
-      event.clientY - this.lastPointerY;
+    // الشاشة مدوّرة 90 درجة على الموبايل بالطول،
+    // لذلك نحوّل اتجاه حركة الإصبع إلى إحداثيات الخريطة.
+    const isRotatedPortrait =
+      window.innerWidth <= 700 &&
+      window.innerHeight > window.innerWidth;
 
-    // نعتبره Drag فعلي بعد حركة بسيطة
-    if (
-      Math.abs(deltaX) > 2 ||
-      Math.abs(deltaY) > 2
-    ) {
+    const deltaX = isRotatedPortrait ? rawDeltaY : rawDeltaX;
+    const deltaY = isRotatedPortrait ? -rawDeltaX : rawDeltaY;
+
+    if (Math.abs(rawDeltaX) > 2 || Math.abs(rawDeltaY) > 2) {
       this.dragMoved = true;
     }
 
@@ -613,8 +615,8 @@ export class MapViewComponent implements OnInit {
 
     this.lastPointerX = event.clientX;
     this.lastPointerY = event.clientY;
-
   }
+
 
   stopDrag(): void {
 
