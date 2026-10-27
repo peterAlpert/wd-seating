@@ -6870,3 +6870,29 @@
 .legend {
     background-color: rgba(15, 23, 42, 0.95);
 }
+
+
+/* Mobile landscape: Adjust map wrapper scaling to fit viewport while maintaining aspect ratio */
+
+/* AUTO LANDSCAPE VIEW ON PORTRAIT PHONES */
+@media (max-width: 700px) and (orientation: portrait) {
+    .map-container {
+        position: fixed !important;
+        top: 0 !important;
+        left: 100vw !important;
+
+        width: 100dvh !important;
+        height: 100vw !important;
+        min-height: 0 !important;
+
+        overflow: hidden !important;
+        transform: rotate(90deg) !important;
+        transform-origin: top left !important;
+        touch-action: none;
+        z-index: 9999;
+    }
+
+    .map-wrapper {
+        transform-origin: top left !important;
+    }
+}
