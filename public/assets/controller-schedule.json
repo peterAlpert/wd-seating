@@ -1,0 +1,2171 @@
+{
+  "source": "التوزيعه من 17_ 10 الي 15 _11.xlsx",
+  "weeks": [
+    {
+      "id": "week1",
+      "name": "الأسبوع الأول",
+      "days": [
+        {
+          "key": "week1-col7",
+          "label": "السبت 17/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "Off 1",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "Off 1",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "البحير ة",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "Off 1",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "Off 1",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "Off 1",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 1",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 3 + كويسكات",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "Off 1",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "نص سنوي",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "Off 1",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "Off 1",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "تراك + فتنس + ٣-٤",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "Off 1",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col6",
+          "label": "الاحد 18/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "سنو ي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "البحير ه",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملا عب",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الجار دن",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "Off 1",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "نص سنوي",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "Off 1",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 2",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "نص سنوي",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 1",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 3 + كويسكات",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "Off 1",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "تراك",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "سنوي",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "سنوي",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col5",
+          "label": "الاثنين 19/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "Off 1",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "Off 1",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "سنوي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "Off 1",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "البحير ة",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "سنو ي",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "Off 1",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 1",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 3 + كويسكات",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "Off 1",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "سنوي",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "تراك + فتنس + ٣-٤",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col4",
+          "label": "الثلاثاء 20/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "Off 1",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "بدل ٨ / ١٠",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "بدل ٨ / ١٠",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "Off 1",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "Off 1",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 3",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "كو يسكات",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 2",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "Off 1",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 1",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "م3-4+فتنس",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "Off 1",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "تراك",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "سنوي",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col3",
+          "label": "الاربعاء 21 /10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "البحير ه",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "سنو ي",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملا عب",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الجار دن",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "سنو ي",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "سنوي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "سنوي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "البحير ة",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "سنو ي",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 2",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 1",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 3",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "سنو ي",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "بدل ٨ / ١٠",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "سنوي",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "سنوي",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "سنوي",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "تراك + فتنس + ٣-٤",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col2",
+          "label": "الخميس 22/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "مبني وضلع اجتماعي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "الجار دن",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "مبني وضلع رياضي",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الملا عب",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "مبني اجتماعي دور ارضي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "مبني اجتماعي دور علوي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "كو يسكات",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 2",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 2",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 1",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 3",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "تراك داخلي",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "تراك خارجي",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week1-col1",
+          "label": "الجمعة 23 /10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "أحمد جلال",
+              "assignment": "S.V",
+              "sourceRow": 3
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "الملا عب",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "مبني وضلع اجتماعي",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الجار دن",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "مبني وضلع رياضي",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "مبني اجتماعي دور ارضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "مبني اجتماعي دور علوي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "كو يسكات",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "سنو ي",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 1",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 3",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "تراك خارجي",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "تراك داخلي",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 65
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "week2",
+      "name": "الأسبوع الثاني",
+      "days": [
+        {
+          "key": "week2-col7",
+          "label": "السبت  24/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "Off 2",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "البحير ه",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الجار دن",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الملا عب",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "Off 2",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "سنوي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "البحير ة",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "Off 2",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 3 + كويسكات",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "Off 2",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 1",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "نص سنوي",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "تراك",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "Off 2",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "Off 2",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col6",
+          "label": "الاحد 25 /10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "سنو ي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "الجار دن",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الملا عب",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "البحير ه",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "Off 2",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 1",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "سنو ي",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 2",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 3",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "كو يسكات",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "Off 2",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "Off 2",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "تراك",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "مبني+ فتنس",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "Off 2",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col5",
+          "label": "الاثنين 26/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "سنو ي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "Off 2",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "نص سنوي من 7: 11",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "سنوي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "Off 2",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "البحير ة",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 3 + كويسكات",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 1",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "Off 2",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "Off 2",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "سنوي",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "سنوي",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "Off 2",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "تراك + فتنس + ٣-٤",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col4",
+          "label": "الثلاثاء 27/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "Off 2",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "Off 2",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "النادي بالكامل - ٩ بحيره و ج١-٢",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "الملاعب وج 3 وكويسكات",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "Off 2",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "سنوي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 2",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "كو يسكات",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "سنو ي",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 1",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 3",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "م3-4+فتنس",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "Off 2",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "تراك",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "سنوي",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col3",
+          "label": "الاربعاء 28/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "سنو ي",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "سنو ي",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 9
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "البحير ة",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "Off 2",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "Off 2",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "المبني الاجتماعي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "سنو ي",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "Off 2",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "نص سنوي من 3: 7",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "ج٣ + ½ ج٢ + كويسكات",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "ج١ + ½ ج٢",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "Off 1",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "سنوي",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "تراك + فتنس + ٣-٤",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "سنوي",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "مرحله + مبني",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "سنوي",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col2",
+          "label": "الخميس 29/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "مبني وضلع اجتماعي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "مبني وضلع رياضي",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الجار دن",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الملا عب",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "مبني اجتماعي دور علوي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "مبني اجتماعي دور ارضي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 2",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 1",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "جاردن 2",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 3",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "كو يسكات",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "تراك داخلي",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "تراك خارجي",
+              "sourceRow": 65
+            }
+          ]
+        },
+        {
+          "key": "week2-col1",
+          "label": "الجمعة 30/ 10",
+          "assignments": [
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "النادي بالكامل - ٩ ملاعب وج3 وك",
+              "sourceRow": 5
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "٩ بحيره و ج١-٢",
+              "sourceRow": 6
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "كيرلس صموئيل",
+              "assignment": "مبني وضلع اجتماعي",
+              "sourceRow": 8
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "جالا جمال",
+              "assignment": "مبني وضلع رياضي",
+              "sourceRow": 9
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "دعاء احمد",
+              "assignment": "الجار دن",
+              "sourceRow": 10
+            },
+            {
+              "sector": "الوردية الصباحية",
+              "name": "امير مجدي",
+              "assignment": "الملا عب",
+              "sourceRow": 11
+            },
+            {
+              "sector": "البحيرة",
+              "name": "حسام حسن",
+              "assignment": "S.V",
+              "sourceRow": 23
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مدحت وصفي",
+              "assignment": "مبني اجتماعي دور علوي",
+              "sourceRow": 24
+            },
+            {
+              "sector": "البحيرة",
+              "name": "مادونا عادل",
+              "assignment": "الضلع الرياضي",
+              "sourceRow": 25
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمد سيد",
+              "assignment": "المبني الرياضي",
+              "sourceRow": 26
+            },
+            {
+              "sector": "البحيرة",
+              "name": "محمود عطيه",
+              "assignment": "الضلع الاجتماعي",
+              "sourceRow": 27
+            },
+            {
+              "sector": "البحيرة",
+              "name": "كريم محمود",
+              "assignment": "مبني اجتماعي دور ارضي",
+              "sourceRow": 28
+            },
+            {
+              "sector": "الجاردن",
+              "name": "شيرين اكرام",
+              "assignment": "S.V",
+              "sourceRow": 41
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ابانوب زكريا",
+              "assignment": "جاردن 1",
+              "sourceRow": 42
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بولا نبيل",
+              "assignment": "جاردن 2",
+              "sourceRow": 43
+            },
+            {
+              "sector": "الجاردن",
+              "name": "كيرلس سامح",
+              "assignment": "كو يسكات",
+              "sourceRow": 44
+            },
+            {
+              "sector": "الجاردن",
+              "name": "ماريان اميل",
+              "assignment": "جاردن 2",
+              "sourceRow": 45
+            },
+            {
+              "sector": "الجاردن",
+              "name": "بيتر كميل",
+              "assignment": "جاردن 1",
+              "sourceRow": 46
+            },
+            {
+              "sector": "الملاعب",
+              "name": "روماني مجدي",
+              "assignment": "S.V",
+              "sourceRow": 59
+            },
+            {
+              "sector": "الملاعب",
+              "name": "بهاء عبدالمؤمن",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 60
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا اشرف",
+              "assignment": "ملعب 1-2",
+              "sourceRow": 61
+            },
+            {
+              "sector": "الملاعب",
+              "name": "خالد خليفه",
+              "assignment": "ملعب 3-4",
+              "sourceRow": 62
+            },
+            {
+              "sector": "الملاعب",
+              "name": "اندرو عماد",
+              "assignment": "تراك خارجي",
+              "sourceRow": 63
+            },
+            {
+              "sector": "الملاعب",
+              "name": "محمود بهاء",
+              "assignment": "تراك داخلي",
+              "sourceRow": 64
+            },
+            {
+              "sector": "الملاعب",
+              "name": "مينا مخلص",
+              "assignment": "المرحله الثانيه",
+              "sourceRow": 65
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

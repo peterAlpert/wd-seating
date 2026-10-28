@@ -1,0 +1,260 @@
+<div class="schedule-page" dir="rtl">
+    <header class="schedule-header">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div>
+                <h1>توزيعة الكنترول</h1>
+                <p>متابعة توزيع أفراد الكنترول على أيام الأسبوع والقطاعات</p>
+            </div>
+        </div>
+
+        <div class="header-badge">
+            <span class="live-dot"></span>
+            جدول التوزيع
+        </div>
+    </header>
+
+    <div class="source-note" *ngIf="source">
+        <i class="fa-solid fa-file-excel"></i>
+        مصدر البيانات: {{ source }}
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <p>{{ importing ? 'جاري استيراد التوزيعة لأول مرة...' : 'جاري تحميل التوزيعة...' }}</p>
+    </div>
+
+    <div class="error-state" *ngIf="!loading && errorMessage">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <p>{{ errorMessage }}</p>
+        <button type="button" (click)="loadAgain()">
+            إعادة المحاولة
+        </button>
+    </div>
+
+    <ng-container *ngIf="!loading && !errorMessage">
+        <section class="summary-grid">
+            <article class="summary-card">
+                <div class="summary-icon total-icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <span>إجمالي التكليفات</span>
+                    <strong>{{ totalAssignments }}</strong>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon off-icon">
+                    <i class="fa-solid fa-calendar-minus"></i>
+                </div>
+                <div>
+                    <span>راحة / إجازة</span>
+                    <strong>{{ offCount }}</strong>
+                </div>
+            </article>
+
+            <article class="summary-card">
+                <div class="summary-icon supervisor-icon">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <div>
+                    <span>تكليفات S.V</span>
+                    <strong>{{ supervisorCount }}</strong>
+                </div>
+            </article>
+        </section>
+
+        <section class="filters-card">
+            <div class="section-heading">
+                <div>
+                    <h2>تصفية التوزيعة</h2>
+                    <p>اختار الأسبوع واليوم والقطاع المطلوب</p>
+                </div>
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+
+            <div class="filters-grid">
+                <div class="filter-field">
+                    <label for="weekSelect">الأسبوع</label>
+                    <select id="weekSelect" [(ngModel)]="selectedWeekId" (ngModelChange)="onWeekChange()">
+                        <option *ngFor="let week of weeks" [value]="week.id">
+                            {{ week.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="filter-field">
+                    <label for="daySelect">اليوم</label>
+                    <select id="daySelect" [(ngModel)]="selectedDayKey" (ngModelChange)="onDayChange()">
+                        <option *ngFor="let day of days" [value]="day.key">
+                            {{ day.label }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="filter-field">
+                    <label for="sectorSelect">القطاع / الوردية</label>
+                    <select id="sectorSelect" [(ngModel)]="selectedSector">
+                        <option *ngFor="let sector of availableSectors" [value]="sector">
+                            {{ sector }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="filter-field search-field">
+                    <label for="searchInput">بحث</label>
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="searchInput" type="search" [(ngModel)]="searchText"
+                            placeholder="اسم الكنترولر أو التكليف..." />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="assignments-card">
+            <div class="table-heading">
+                <div>
+                    <h2>تفاصيل التوزيعة</h2>
+                    <p *ngIf="selectedDay">{{ selectedDay.label }}</p>
+                </div>
+                <span class="results-count">
+                    {{ filteredAssignments.length }} تكليف
+                </span>
+            </div>
+
+            <div class="save-error" *ngIf="saveError">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                {{ saveError }}
+            </div>
+
+            <div class="empty-state" *ngIf="filteredAssignments.length === 0">
+                <i class="fa-regular fa-folder-open"></i>
+                <h3>مفيش نتائج</h3>
+                <p>جرّب تغيير الفلاتر أو كلمة البحث.</p>
+            </div>
+
+            <div class="table-wrapper" *ngIf="filteredAssignments.length > 0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الكنترولر</th>
+                            <th>القطاع / الوردية</th>
+                            <th>التكليف</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let item of filteredAssignments; let i = index; trackBy: trackByAssignment">
+
+                            <td class="row-number">{{ i + 1 }}</td>
+
+                            <td class="controller-name">
+                                <ng-container *ngIf="editingId !== item.id; else editName">
+                                    <span class="person-icon">
+                                        <i class="fa-solid fa-user"></i>
+                                    </span>
+                                    {{ item.name }}
+                                </ng-container>
+
+                                <ng-template #editName>
+                                    <input class="edit-input" aria-label="اسم الكنترولر"
+                                        [(ngModel)]="editDraft!.name" />
+                                </ng-template>
+                            </td>
+
+                            <td>
+                                <ng-container *ngIf="editingId !== item.id; else editSector">
+                                    <span class="sector-label">{{ item.sector }}</span>
+                                </ng-container>
+
+                                <ng-template #editSector>
+                                    <select class="edit-input" aria-label="القطاع" [(ngModel)]="editDraft!.sector">
+                                        <option *ngFor="let sector of preferredSectors" [value]="sector">
+                                            {{ sector }}
+                                        </option>
+                                        <option *ngIf="!preferredSectors.includes(editDraft!.sector)"
+                                            [value]="editDraft!.sector">
+                                            {{ editDraft!.sector }}
+                                        </option>
+                                    </select>
+                                </ng-template>
+                            </td>
+
+                            <td class="assignment-text">
+                                <ng-container *ngIf="editingId !== item.id; else editAssignment">
+                                    {{ item.assignment }}
+                                </ng-container>
+
+                                <ng-template #editAssignment>
+                                    <input class="edit-input" aria-label="التكليف"
+                                        [(ngModel)]="editDraft!.assignment" />
+                                </ng-template>
+                            </td>
+
+                            <td>
+                                <span *ngIf="editingId !== item.id" class="status-label"
+                                    [ngClass]="getAssignmentClass(item.assignment)">
+
+                                    <ng-container
+                                        *ngIf="getAssignmentClass(item.assignment) === 'assignment-off'; else notOff">
+                                        راحة / إجازة
+                                    </ng-container>
+
+                                    <ng-template #notOff>
+                                        <ng-container
+                                            *ngIf="getAssignmentClass(item.assignment) === 'assignment-supervisor'; else normal">
+                                            إشراف
+                                        </ng-container>
+                                    </ng-template>
+
+                                    <ng-template #normal>تكليف</ng-template>
+                                </span>
+
+                                <span *ngIf="editingId === item.id" class="edit-hint">
+                                    تعديل
+                                </span>
+                            </td>
+
+                            <td class="actions-cell">
+                                <ng-container *ngIf="editingId !== item.id">
+                                    <button type="button" class="edit-button"
+                                        [disabled]="item.id == null || savingId !== null" (click)="startEdit(item)">
+                                        <i class="fa-solid fa-pen"></i>
+                                        تعديل
+                                    </button>
+                                </ng-container>
+
+                                <ng-container *ngIf="editingId === item.id">
+                                    <button type="button" class="save-button" [disabled]="savingId === item.id"
+                                        (click)="saveEdit(item)">
+                                        <i class="fa-solid"
+                                            [ngClass]="savingId === item.id ? 'fa-spinner fa-spin' : 'fa-floppy-disk'">
+                                        </i>
+                                        {{ savingId === item.id ? 'جاري الحفظ...' : 'حفظ' }}
+                                    </button>
+
+                                    <button type="button" class="cancel-button" [disabled]="savingId === item.id"
+                                        (click)="cancelEdit()">
+                                        إلغاء
+                                    </button>
+                                </ng-container>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="schedule-footer">
+            <i class="fa-solid fa-circle-info"></i>
+            الحالة تصنيف بصري للتكليف المكتوب، والتكليف الأصلي محفوظ كما هو.
+        </footer>
+    </ng-container>
+</div>

@@ -1,3 +1,4 @@
+
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DisplayComponent } from './pages/display/display.component';
@@ -9,6 +10,7 @@ import { AlertsComponent } from './pages/alerts/alerts.component';
 import { ControllerCoverageComponent } from './pages/controller-coverage/controller-coverage.component';
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { IncidentsComponent } from './pages/incidents/incidents.component';
+import { ControllerScheduleComponent } from './pages/controller-schedule/controller-schedule.component';
 
 export const routes: Routes = [
     { path: '', component: MapViewComponent, pathMatch: 'full' },
@@ -19,6 +21,7 @@ export const routes: Routes = [
     { path: 'heat-map', component: HeatMapComponent },
     { path: 'alerts', component: AlertsComponent },
     { path: 'coverage', component: ControllerCoverageComponent },
+    { path: 'controller-schedule', component: ControllerScheduleComponent },
     { path: 'maintenance', component: MaintenanceComponent },
     { path: 'incidents', component: IncidentsComponent },
     { path: '**', redirectTo: '' }
