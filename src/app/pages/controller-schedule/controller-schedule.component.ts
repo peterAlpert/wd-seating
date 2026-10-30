@@ -284,6 +284,9 @@ export class ControllerScheduleComponent implements OnInit {
     this.editDraft = null;
     this.saveError = '';
   }
+  goMap(): void {
+    window.location.href = '/controller-map';
+  }
 
   saveEdit(item: ScheduleAssignment): void {
     if (

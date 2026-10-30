@@ -6896,3 +6896,7 @@
         transform-origin: top left !important;
     }
 }
+
+.section-panel {
+    color: #fff;
+}

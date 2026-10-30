@@ -26,116 +26,284 @@
 
     </div>
 
+    <!-- Actions -->
 
-    <!-- Summary -->
+    <div class="maintenance-actions">
 
-    <div class="summary-cards">
+        <button class="add-issue-btn" (click)="addIssue()">
 
-        <div class="summary-card">
+            ➕ بلاغ جديد
 
-            <div class="summary-icon">
-                🔧
-            </div>
+        </button>
 
-            <div>
+    </div>
 
-                <strong>
-                    {{ getTotalIssues() }}
-                </strong>
+    <!-- Search & Filters -->
 
-                <span>
-                    إجمالي البلاغات
-                </span>
+    <div class="maintenance-filters">
 
-            </div>
+        <!-- Search -->
 
-        </div>
+        <div class="filter-search">
 
+            <span>🔎</span>
 
-        <div class="summary-card new">
-
-            <div class="summary-icon">
-                🆕
-            </div>
-
-            <div>
-
-                <strong>
-                    {{ getNewIssues() }}
-                </strong>
-
-                <span>
-                    جديدة
-                </span>
-
-            </div>
+            <input type="text" [(ngModel)]="searchText" placeholder="ابحث عن بلاغ أو وصف..." />
 
         </div>
 
 
-        <div class="summary-card progress">
+        <!-- Status -->
 
-            <div class="summary-icon">
-                🔄
-            </div>
+        <div class="filter-field">
 
-            <div>
+            <label>الحالة</label>
 
-                <strong>
-                    {{ getInProgressIssues() }}
-                </strong>
+            <select [(ngModel)]="selectedStatus">
 
-                <span>
+                <option value="All">
+                    كل الحالات
+                </option>
+
+                <option value="New">
+                    جديد
+                </option>
+
+                <option value="Assigned">
+                    تم التعيين
+                </option>
+
+                <option value="InProgress">
                     جاري العمل
-                </span>
+                </option>
 
-            </div>
-
-        </div>
-
-
-        <div class="summary-card resolved">
-
-            <div class="summary-icon">
-                ✅
-            </div>
-
-            <div>
-
-                <strong>
-                    {{ getResolvedIssues() }}
-                </strong>
-
-                <span>
+                <option value="Resolved">
                     تم الحل
-                </span>
+                </option>
 
-            </div>
+            </select>
 
         </div>
 
 
-        <div class="summary-card critical">
+        <!-- Priority -->
 
-            <div class="summary-icon">
-                🔴
+        <div class="filter-field">
+
+            <label>الأولوية</label>
+
+            <select [(ngModel)]="selectedPriority">
+
+                <option value="All">
+                    كل الأولويات
+                </option>
+
+                <option value="Low">
+                    منخفضة
+                </option>
+
+                <option value="Medium">
+                    متوسطة
+                </option>
+
+                <option value="High">
+                    عالية
+                </option>
+
+                <option value="Critical">
+                    حرجة
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Sector -->
+
+        <div class="filter-field">
+
+            <label>القطاع</label>
+
+            <select [(ngModel)]="selectedSector">
+
+                <option value="All">
+                    كل القطاعات
+                </option>
+
+                <option value="Lake">
+                    البحيرة
+                </option>
+
+                <option value="Garden">
+                    الجاردن
+                </option>
+
+                <option value="Fields">
+                    الملاعب
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- Clear -->
+
+        <button class="clear-filters-btn" (click)="clearFilters()">
+
+            ✖ مسح الفلاتر
+
+        </button>
+
+    </div>
+
+
+    <!-- Loading -->
+
+    <div class="maintenance-loading" *ngIf="loading">
+
+        <div class="loading-spinner"></div>
+
+        جاري تحميل البلاغات...
+
+    </div>
+
+
+    <!-- Issues -->
+
+    <div class="issues-list" *ngIf="!loading && filteredIssues.length">
+
+        <div class="issue-card" *ngFor="let issue of filteredIssues">
+
+
+            <div class="issue-top">
+
+                <div>
+
+                    <div class="issue-title">
+
+                        {{ issue.title }}
+
+                    </div>
+
+                    <div class="issue-description">
+
+                        {{ issue.description }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="priority-badge" [ngClass]="issue.priority.toLowerCase()">
+                    {{ getPriorityArabic(issue.priority) }}
+                </div>
+
             </div>
 
-            <div>
 
-                <strong>
-                    {{ getCriticalIssues() }}
-                </strong>
+            <div class="issue-info">
 
-                <span>
-                    أولوية حرجة
-                </span>
+                <div>
+                    📍
+                    {{ getSectionArabic(issue.sectionName) }}
+                </div>
+
+                <div>
+                    🏢
+                    {{ getSectorArabic(issue.sector) }}
+                </div>
+
+                <div>
+                    🛠️
+                    {{ getCategoryArabic(issue.category) }}
+                </div>
+
+                <div>
+                    👮‍♂️
+                    {{ issue.reportedBy || 'غير محدد' }}
+                </div>
+
+                <div *ngIf="issue.assignedTo">
+                    👤
+                    {{ getAssignedToArabic(issue.assignedTo) }}
+                </div>
 
             </div>
+
+
+            <div class="issue-bottom">
+
+                <div class="status-badge" [ngClass]="
+            issue.status.toLowerCase()
+        ">
+
+                    {{ getStatusArabic(issue.status) }}
+
+                </div>
+
+
+                <div class="issue-date">
+
+                    {{ issue.createdAt | date:'dd/MM/yyyy HH:mm' }}
+
+                </div>
+
+            </div>
+
+
+            <!-- Actions -->
+
+            <div class="issue-actions">
+
+                <!-- تعيين مسؤول -->
+                <button *ngIf="issue.status === 'New'" class="issue-action-btn assign" (click)="assignIssue(issue)">
+                    👤 تعيين مسؤول
+                </button>
+
+
+                <!-- بدء العمل -->
+                <button *ngIf="issue.status === 'Assigned'" class="issue-action-btn start"
+                    (click)="updateIssueStatus(issue, 'InProgress')">
+                    ▶️ بدء العمل
+                </button>
+
+
+                <!-- تم الحل -->
+                <button *ngIf="issue.status === 'InProgress'" class="issue-action-btn resolve"
+                    (click)="updateIssueStatus(issue, 'Resolved')">
+                    ✅ تم الحل
+                </button>
+
+            </div>
+
 
         </div>
 
     </div>
+
+
+    <!-- Empty -->
+
+    <div class="maintenance-empty" *ngIf="!loading && issues.length && !filteredIssues.length">
+
+        <div class="empty-icon">🔎</div>
+
+        <h3>لا توجد نتائج</h3>
+
+        <p>
+            لا توجد بلاغات مطابقة للبحث أو الفلاتر الحالية
+        </p>
+
+        <button class="clear-filters-btn" (click)="clearFilters()">
+
+            ✖ مسح الفلاتر
+
+        </button>
+
+    </div>
+
 
     <!-- =========================================
      Maintenance Dashboard
@@ -471,281 +639,113 @@
     </div>
 
 
-    <!-- Actions -->
+    <!-- Summary -->
 
-    <div class="maintenance-actions">
+    <div class="summary-cards">
 
-        <button class="add-issue-btn" (click)="addIssue()">
+        <div class="summary-card">
 
-            ➕ بلاغ جديد
+            <div class="summary-icon">
+                🔧
+            </div>
 
-        </button>
+            <div>
 
-    </div>
+                <strong>
+                    {{ getTotalIssues() }}
+                </strong>
 
-    <!-- Search & Filters -->
+                <span>
+                    إجمالي البلاغات
+                </span>
 
-    <div class="maintenance-filters">
-
-        <!-- Search -->
-
-        <div class="filter-search">
-
-            <span>🔎</span>
-
-            <input type="text" [(ngModel)]="searchText" placeholder="ابحث عن بلاغ أو وصف..." />
+            </div>
 
         </div>
 
 
-        <!-- Status -->
+        <div class="summary-card new">
 
-        <div class="filter-field">
+            <div class="summary-icon">
+                🆕
+            </div>
 
-            <label>الحالة</label>
+            <div>
 
-            <select [(ngModel)]="selectedStatus">
+                <strong>
+                    {{ getNewIssues() }}
+                </strong>
 
-                <option value="All">
-                    كل الحالات
-                </option>
+                <span>
+                    جديدة
+                </span>
 
-                <option value="New">
-                    جديد
-                </option>
+            </div>
 
-                <option value="Assigned">
-                    تم التعيين
-                </option>
+        </div>
 
-                <option value="InProgress">
+
+        <div class="summary-card progress">
+
+            <div class="summary-icon">
+                🔄
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getInProgressIssues() }}
+                </strong>
+
+                <span>
                     جاري العمل
-                </option>
+                </span>
 
-                <option value="Resolved">
+            </div>
+
+        </div>
+
+
+        <div class="summary-card resolved">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ getResolvedIssues() }}
+                </strong>
+
+                <span>
                     تم الحل
-                </option>
+                </span>
 
-            </select>
+            </div>
 
         </div>
 
 
-        <!-- Priority -->
+        <div class="summary-card critical">
 
-        <div class="filter-field">
+            <div class="summary-icon">
+                🔴
+            </div>
 
-            <label>الأولوية</label>
+            <div>
 
-            <select [(ngModel)]="selectedPriority">
+                <strong>
+                    {{ getCriticalIssues() }}
+                </strong>
 
-                <option value="All">
-                    كل الأولويات
-                </option>
+                <span>
+                    أولوية حرجة
+                </span>
 
-                <option value="Low">
-                    منخفضة
-                </option>
-
-                <option value="Medium">
-                    متوسطة
-                </option>
-
-                <option value="High">
-                    عالية
-                </option>
-
-                <option value="Critical">
-                    حرجة
-                </option>
-
-            </select>
+            </div>
 
         </div>
-
-
-        <!-- Sector -->
-
-        <div class="filter-field">
-
-            <label>القطاع</label>
-
-            <select [(ngModel)]="selectedSector">
-
-                <option value="All">
-                    كل القطاعات
-                </option>
-
-                <option value="Lake">
-                    البحيرة
-                </option>
-
-                <option value="Garden">
-                    الجاردن
-                </option>
-
-                <option value="Fields">
-                    الملاعب
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- Clear -->
-
-        <button class="clear-filters-btn" (click)="clearFilters()">
-
-            ✖ مسح الفلاتر
-
-        </button>
-
-    </div>
-
-
-    <!-- Loading -->
-
-    <div class="maintenance-loading" *ngIf="loading">
-
-        <div class="loading-spinner"></div>
-
-        جاري تحميل البلاغات...
-
-    </div>
-
-
-    <!-- Issues -->
-
-    <div class="issues-list" *ngIf="!loading && filteredIssues.length">
-
-        <div class="issue-card" *ngFor="let issue of filteredIssues">
-
-
-            <div class="issue-top">
-
-                <div>
-
-                    <div class="issue-title">
-
-                        {{ issue.title }}
-
-                    </div>
-
-                    <div class="issue-description">
-
-                        {{ issue.description }}
-
-                    </div>
-
-                </div>
-
-
-                <div class="priority-badge" [ngClass]="issue.priority.toLowerCase()">
-                    {{ getPriorityArabic(issue.priority) }}
-                </div>
-
-            </div>
-
-
-            <div class="issue-info">
-
-                <div>
-                    📍
-                    {{ getSectionArabic(issue.sectionName) }}
-                </div>
-
-                <div>
-                    🏢
-                    {{ getSectorArabic(issue.sector) }}
-                </div>
-
-                <div>
-                    🛠️
-                    {{ getCategoryArabic(issue.category) }}
-                </div>
-
-                <div>
-                    👮‍♂️
-                    {{ issue.reportedBy || 'غير محدد' }}
-                </div>
-
-                <div *ngIf="issue.assignedTo">
-                    👤
-                    {{ getAssignedToArabic(issue.assignedTo) }}
-                </div>
-
-            </div>
-
-
-            <div class="issue-bottom">
-
-                <div class="status-badge" [ngClass]="
-            issue.status.toLowerCase()
-        ">
-
-                    {{ getStatusArabic(issue.status) }}
-
-                </div>
-
-
-                <div class="issue-date">
-
-                    {{ issue.createdAt | date:'dd/MM/yyyy HH:mm' }}
-
-                </div>
-
-            </div>
-
-
-            <!-- Actions -->
-
-            <div class="issue-actions">
-
-                <!-- تعيين مسؤول -->
-                <button *ngIf="issue.status === 'New'" class="issue-action-btn assign" (click)="assignIssue(issue)">
-                    👤 تعيين مسؤول
-                </button>
-
-
-                <!-- بدء العمل -->
-                <button *ngIf="issue.status === 'Assigned'" class="issue-action-btn start"
-                    (click)="updateIssueStatus(issue, 'InProgress')">
-                    ▶️ بدء العمل
-                </button>
-
-
-                <!-- تم الحل -->
-                <button *ngIf="issue.status === 'InProgress'" class="issue-action-btn resolve"
-                    (click)="updateIssueStatus(issue, 'Resolved')">
-                    ✅ تم الحل
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- Empty -->
-
-    <div class="maintenance-empty" *ngIf="!loading && issues.length && !filteredIssues.length">
-
-        <div class="empty-icon">🔎</div>
-
-        <h3>لا توجد نتائج</h3>
-
-        <p>
-            لا توجد بلاغات مطابقة للبحث أو الفلاتر الحالية
-        </p>
-
-        <button class="clear-filters-btn" (click)="clearFilters()">
-
-            ✖ مسح الفلاتر
-
-        </button>
 
     </div>
 
