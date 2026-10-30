@@ -1,0 +1,153 @@
+<div class="controller-map-page" dir="rtl">
+    <header class="page-header">
+        <div>
+            <span class="eyebrow">WADI DEGLA · CONTROL</span>
+            <h1>خريطة توزيع الكنترول</h1>
+            <p>متابعة أماكن وتكليفات أفراد الكنترول من جدول التوزيعة</p>
+        </div>
+
+        <button class="refresh-button" type="button" (click)="loadSchedule()" [disabled]="loading">
+            <i class="fa-solid fa-rotate" [class.fa-spin]="loading"></i>
+            تحديث البيانات
+        </button>
+    </header>
+
+    <div class="source-note" *ngIf="source">
+        مصدر البيانات: {{ source }}
+    </div>
+
+    <div class="state-card loading" *ngIf="loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        جاري تحميل التوزيعة...
+    </div>
+
+    <div class="state-card error" *ngIf="!loading && errorMessage">
+        <p>{{ errorMessage }}</p>
+        <button type="button" (click)="loadSchedule()">إعادة المحاولة</button>
+    </div>
+
+    <ng-container *ngIf="!loading && !errorMessage">
+        <nav class="mode-switch" aria-label="نوع العرض">
+            <button type="button" [class.active]="viewMode === 'daily'" (click)="setMode('daily')">
+                <i class="fa-regular fa-calendar"></i>
+                العرض اليومي
+            </button>
+
+            <button type="button" [class.active]="viewMode === 'monthly'" (click)="setMode('monthly')">
+                <i class="fa-regular fa-calendar-days"></i>
+                استعراض الشهر
+            </button>
+        </nav>
+
+        <section class="filters">
+            <label>
+                <span>الأسبوع</span>
+                <select [(ngModel)]="selectedWeekId" (ngModelChange)="onWeekChange()">
+                    <option *ngFor="let week of weeks" [value]="week.id">
+                        {{ week.name }}
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                <span>{{ viewMode === 'daily' ? 'اليوم' : 'اليوم من كل الأسابيع' }}</span>
+                <select [(ngModel)]="selectedDayOption">
+                    <option *ngFor="let day of allDays" [value]="day.weekId + '::' + day.dayKey">
+                        {{ day.weekName }} — {{ day.dayLabel }}
+                    </option>
+                </select>
+            </label>
+
+            <label>
+                <span>القطاع</span>
+                <select [(ngModel)]="selectedSector">
+                    <option *ngFor="let sector of availableSectors" [value]="sector">
+                        {{ sector }}
+                    </option>
+                </select>
+            </label>
+
+            <label class="search-field">
+                <span>بحث عن شخص أو تكليف</span>
+                <input [(ngModel)]="searchText" placeholder="اكتب اسم الكنترول أو المنطقة..." />
+            </label>
+        </section>
+
+        <section class="summary">
+            <article>
+                <span>إجمالي الأفراد الظاهرين</span>
+                <strong>{{ totalPeople }}</strong>
+            </article>
+            <article>
+                <span>تكليفات مرتبطة بالخريطة</span>
+                <strong>{{ totalMapped }}</strong>
+            </article>
+            <article class="warning-summary">
+                <span>تحتاج مراجعة</span>
+                <strong>{{ totalUnmapped }}</strong>
+            </article>
+        </section>
+
+        <section class="map-panel">
+            <div class="panel-heading">
+                <div>
+                    <h2>مواقع التكليفات</h2>
+                    <p>
+                        {{ selectedWeek?.name }} — {{ selectedDay?.label }}
+                    </p>
+                </div>
+                <span class="read-only">
+                    <i class="fa-solid fa-eye"></i>
+                    عرض فقط
+                </span>
+            </div>
+
+            <div class="schematic-map">
+                <div class="map-caption">مخطط توزيع المناطق</div>
+
+                <article class="map-area" *ngFor="let area of areas" [ngStyle]="getAreaStyle(area)"
+                    [class.has-people]="assignmentsForArea(area).length > 0" [title]="area.name">
+
+                    <div class="area-title">{{ area.name }}</div>
+
+                    <div class="people-list" *ngIf="assignmentsForArea(area).length">
+                        <div class="person-chip" *ngFor="let person of assignmentsForArea(area)">
+                            <i class="fa-solid fa-user"></i>
+                            <span>{{ person.name }}</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <p class="map-disclaimer">
+                هذا مخطط مستقل مبني على إحداثيات المناطق الحالية، وليس صورة الخريطة الأصلية.
+                لا تُحفظ أي تغييرات من هذه الصفحة.
+            </p>
+        </section>
+
+        <section class="unmapped-panel" *ngIf="unmappedAssignments.length">
+            <div class="panel-heading">
+                <div>
+                    <h2>تكليفات تحتاج مراجعة</h2>
+                    <p>لم يتم وضع هذه الأسماء على الخريطة لتجنب الربط غير الصحيح.</p>
+                </div>
+                <span class="count-badge">{{ unmappedAssignments.length }}</span>
+            </div>
+
+            <div class="unmapped-list">
+                <article *ngFor="let item of unmappedAssignments">
+                    <div class="person-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="unmapped-details">
+                        <strong>{{ item.name }}</strong>
+                        <span>{{ item.sector }}</span>
+                    </div>
+                    <div class="original-assignment">
+                        {{ item.assignment }}
+                    </div>
+                </article>
+            </div>
+        </section>
+    </ng-container>
+</div>

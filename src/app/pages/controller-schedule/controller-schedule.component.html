@@ -79,7 +79,8 @@
             <div class="filters-grid">
                 <div class="filter-field">
                     <label for="weekSelect">الأسبوع</label>
-                    <select id="weekSelect" [(ngModel)]="selectedWeekId" (ngModelChange)="onWeekChange()">
+                    <select id="weekSelect" [(ngModel)]="selectedWeekId" (ngModelChange)="onWeekChange()"
+                        [disabled]="savingId !== null">
                         <option *ngFor="let week of weeks" [value]="week.id">
                             {{ week.name }}
                         </option>
@@ -88,7 +89,8 @@
 
                 <div class="filter-field">
                     <label for="daySelect">اليوم</label>
-                    <select id="daySelect" [(ngModel)]="selectedDayKey" (ngModelChange)="onDayChange()">
+                    <select id="daySelect" [(ngModel)]="selectedDayKey" (ngModelChange)="onDayChange()"
+                        [disabled]="savingId !== null">
                         <option *ngFor="let day of days" [value]="day.key">
                             {{ day.label }}
                         </option>
@@ -97,7 +99,7 @@
 
                 <div class="filter-field">
                     <label for="sectorSelect">القطاع / الوردية</label>
-                    <select id="sectorSelect" [(ngModel)]="selectedSector">
+                    <select id="sectorSelect" [(ngModel)]="selectedSector" [disabled]="savingId !== null">
                         <option *ngFor="let sector of availableSectors" [value]="sector">
                             {{ sector }}
                         </option>
@@ -109,7 +111,7 @@
                     <div class="search-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input id="searchInput" type="search" [(ngModel)]="searchText"
-                            placeholder="اسم الكنترولر أو التكليف..." />
+                            placeholder="اسم الكنترولر أو التكليف..." [disabled]="savingId !== null" />
                     </div>
                 </div>
             </div>
@@ -126,7 +128,13 @@
                 </span>
             </div>
 
-            <div class="save-error" *ngIf="saveError">
+            <div *ngIf="successMessage" role="status" aria-live="polite"
+                style="display:flex; align-items:center; gap:8px; margin:12px 0; padding:10px 14px; border:1px solid #b7e4c7; border-radius:10px; background:#f0fff4; color:#176b37; font-size:13px;">
+                <i class="fa-solid fa-circle-check"></i>
+                {{ successMessage }}
+            </div>
+
+            <div class="save-error" *ngIf="saveError" role="alert">
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 {{ saveError }}
             </div>
@@ -152,7 +160,6 @@
 
                     <tbody>
                         <tr *ngFor="let item of filteredAssignments; let i = index; trackBy: trackByAssignment">
-
                             <td class="row-number">{{ i + 1 }}</td>
 
                             <td class="controller-name">
@@ -164,8 +171,8 @@
                                 </ng-container>
 
                                 <ng-template #editName>
-                                    <input class="edit-input" aria-label="اسم الكنترولر"
-                                        [(ngModel)]="editDraft!.name" />
+                                    <input class="edit-input" aria-label="اسم الكنترولر" [(ngModel)]="editDraft!.name"
+                                        [disabled]="savingId === item.id" />
                                 </ng-template>
                             </td>
 
@@ -175,7 +182,8 @@
                                 </ng-container>
 
                                 <ng-template #editSector>
-                                    <select class="edit-input" aria-label="القطاع" [(ngModel)]="editDraft!.sector">
+                                    <select class="edit-input" aria-label="القطاع" [(ngModel)]="editDraft!.sector"
+                                        [disabled]="savingId === item.id">
                                         <option *ngFor="let sector of preferredSectors" [value]="sector">
                                             {{ sector }}
                                         </option>
@@ -193,8 +201,8 @@
                                 </ng-container>
 
                                 <ng-template #editAssignment>
-                                    <input class="edit-input" aria-label="التكليف"
-                                        [(ngModel)]="editDraft!.assignment" />
+                                    <input class="edit-input" aria-label="التكليف" [(ngModel)]="editDraft!.assignment"
+                                        [disabled]="savingId === item.id" />
                                 </ng-template>
                             </td>
 
@@ -232,7 +240,7 @@
                                 </ng-container>
 
                                 <ng-container *ngIf="editingId === item.id">
-                                    <button type="button" class="save-button" [disabled]="savingId === item.id"
+                                    <button type="button" class="save-button" [disabled]="savingId !== null"
                                         (click)="saveEdit(item)">
                                         <i class="fa-solid"
                                             [ngClass]="savingId === item.id ? 'fa-spinner fa-spin' : 'fa-floppy-disk'">
@@ -240,7 +248,7 @@
                                         {{ savingId === item.id ? 'جاري الحفظ...' : 'حفظ' }}
                                     </button>
 
-                                    <button type="button" class="cancel-button" [disabled]="savingId === item.id"
+                                    <button type="button" class="cancel-button" [disabled]="savingId !== null"
                                         (click)="cancelEdit()">
                                         إلغاء
                                     </button>

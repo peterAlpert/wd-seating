@@ -21,8 +21,10 @@ export class AppComponent {
   get showFloatingNavigation(): boolean {
     const currentUrl = this.router.url.split('?')[0].split('#')[0];
 
-    // إخفاء الأيقونات في صفحة الخريطة الرئيسية
-    return currentUrl !== '/' && currentUrl !== '';
+    // إخفاء الأيقونات في الصفحة الرئيسية وصفحات الصيانة
+    return currentUrl !== '/' &&
+      currentUrl !== '' &&
+      !currentUrl.startsWith('/maintenance');
   }
 
   goBack(): void {

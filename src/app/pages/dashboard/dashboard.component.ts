@@ -281,7 +281,7 @@ export class DashboardComponent implements OnInit {
   }
 
   goToCoverage(): void {
-    this.router.navigate(['/coverage']);
+    this.router.navigate(['/controller-schedule']);
   }
 
   loadCoverage(): void {

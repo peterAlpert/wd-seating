@@ -11,6 +11,7 @@ import { ControllerCoverageComponent } from './pages/controller-coverage/control
 import { MaintenanceComponent } from './pages/maintenance/maintenance.component';
 import { IncidentsComponent } from './pages/incidents/incidents.component';
 import { ControllerScheduleComponent } from './pages/controller-schedule/controller-schedule.component';
+import { ControllerMapComponent } from './pages/controller-map/controller-map.component';
 
 export const routes: Routes = [
     { path: '', component: MapViewComponent, pathMatch: 'full' },
@@ -24,5 +25,6 @@ export const routes: Routes = [
     { path: 'controller-schedule', component: ControllerScheduleComponent },
     { path: 'maintenance', component: MaintenanceComponent },
     { path: 'incidents', component: IncidentsComponent },
+    { path: 'controller-map', component: ControllerMapComponent },
     { path: '**', redirectTo: '' }
 ];
